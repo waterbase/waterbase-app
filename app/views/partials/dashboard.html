@@ -1,0 +1,55 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div class="row">
+  <header>
+    <div class="container">
+      <h1>Dashboard</h1>
+    </div>
+  </header>
+</div>
+<div class="container" ng-controller="DashboardCtrl">
+  <div class="row">
+    <div class="pull-left">
+      <h1>APIs</h1>
+    </div>
+
+    <div class="pull-right">
+      <a class="btn btn-success" ng-href="/dashboard/create">Create API</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-striped">
+        <tr>
+          <th>name</th>
+          <th>ID</th>
+          <th>port</th>
+          <th>API</th>
+          <th>Actions</th>
+        </tr>
+        <tr ng-repeat="server in servers">
+          <td>{{server.name}}</td>
+          <td>{{server._id}}</td>
+          <td>{{server.port}}</td>
+          <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                Dropdown
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

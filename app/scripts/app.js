@@ -25,6 +25,16 @@ angular.module('hackathonApp', [
         controller: 'SettingsCtrl',
         authenticate: true
       })
+      .when('/dashboard', {
+        templateUrl: 'partials/dashboard',
+        controller: 'DashboardCtrl',
+        authenticate: true
+      })
+      .when('/dashboard/create', {
+        templateUrl: 'partials/newapi',
+        controller: 'NewApiCtrl',
+        authenticate: true
+      })
       .otherwise({
         redirectTo: '/'
       });

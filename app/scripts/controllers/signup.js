@@ -7,7 +7,7 @@ angular.module('hackathonApp')
 
     $scope.register = function(form) {
       $scope.submitted = true;
-  
+
       if(form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
@@ -16,7 +16,7 @@ angular.module('hackathonApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          $location.path('/dashboard');
         })
         .catch( function(err) {
           err = err.data;

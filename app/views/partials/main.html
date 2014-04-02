@@ -1,21 +1,10 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="jumbotron">
-  <h1>'Allo, 'Allo <span ng-show="currentUser">{{ currentUser.name }}</span>!</h1>
+  <span class="glyphicon glyphicon-cloud glyphicon-huge"></span>
+  <h2>Got an idea? Need a backend?</h2>
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
+    Skip this busy work and create RESTful APIs with <strong>APIception's</strong> intuitive GUI
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
-
-<div class="row marketing">
-  <div ng-repeat="thing in awesomeThings">
-      <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
-  </div>
-</div>
-
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
+  <p><a class="btn btn-lg btn-success" ng-href="/signup">Sign up now!</a></p>
 </div>

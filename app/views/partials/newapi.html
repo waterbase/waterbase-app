@@ -1,0 +1,105 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<!-- Header -->
+<div class="row">
+  <header>
+    <div class="container">
+      <h1>Create API</h1>
+    </div>
+  </header>
+</div>
+<!-- /Header -->
+
+<div class="container">
+  <nav class="navbar sm-col-12" id="navbar-api-create">
+
+  </nav>
+</div>
+
+
+<!-- New API Form -->
+<div class="container">
+  <form class="form" name="form" ng-submit="createApi(form)" novalidate>
+
+    <!-- API Name -->
+    <div class="form-group col-sm-6" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                                 'has-error': form.name.$invalid && submitted }">
+      <label>Name</label>
+
+      <input type="text" name="name" class="form-control" ng-model="api.name"
+             required/>
+      <p class="help-block" ng-show="form.name.$error.required && submitted">
+        A name is required
+      </p>
+    </div>
+    <!-- /API Name -->
+
+    <!-- API Port -->
+    <div class="form-group col-sm-6" ng-class="{ 'has-success': form.port.$valid && submitted,
+                                                 'has-error': form.port.$invalid && submitted }">
+      <label>port</label>
+
+      <input type="number" name="port" class="form-control" ng-model="api.port"
+             required
+             mongoose-error/>
+      <p class="help-block" ng-show="form.port.$error.required && submitted">
+        What port do you want to run the API?
+      </p>
+      <p class="help-block" ng-show="form.port.$error.mongoose">
+        {{ errors.port }}
+      </p>
+    </div>
+    <!-- /API Port -->
+
+    <!-- New Resource -->
+    <div class="col-sm-12">
+      <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                          'has-error': form.password.$invalid && submitted }">
+        <label>Resource Name</label>
+
+        <input type="text" name="resource" class="form-control" ng-model="user.password"
+               ng-minlength="3"
+               required
+               mongoose-error/>
+        <p class="help-block"
+           ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+          Password must be at least 3 characters.
+        </p>
+        <p class="help-block" ng-show="form.password.$error.mongoose">
+          {{ errors.password }}
+        </p>
+      </div>
+    </div>
+    <!-- New Attribute -->
+    <div class="form-group col-sm-6" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                      'has-error': form.password.$invalid && submitted }">
+
+      <label> Attribute</label>
+
+      <input type="text" name="resource" class="form-control" ng-model="user.password"
+             ng-minlength="3"
+             required
+             mongoose-error/>
+      <p class="help-block"
+         ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+        Password must be at least 3 characters.
+      </p>
+      <p class="help-block" ng-show="form.password.$error.mongoose">
+        {{ errors.password }}
+      </p>
+    </div>
+    <div class="col-sm-2">
+      <select name="type" class="dropdown">
+        <option value="String">String</option>
+        <option value="Number">Number</option>
+        <option value="Text">Text</option>
+        <option value="Mixed">Mixed</option>
+      </select>
+    </div>
+    <!-- /New Attribute -->
+    <div class="col-sm-12">
+      <button class="btn btn-lg btn-primary" style="width: 100%;" type="submit">Create API</button>
+    </div>
+  </form>
+</div>
+<!-- /New API Form -->

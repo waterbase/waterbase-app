@@ -1,0 +1,80 @@
+.navbar {
+  background-color: #2ecc71;
+  border-bottom: solid #27ae60;
+  font-size: 17px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ecf0f1;
+  background-color: #2ecc71;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  font-weight: bold;
+  background-color: #2ecc71;
+  color: #ecf0f1;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+header {
+  height: 80px;
+  width: 100%;
+  margin-bottom: 35px;
+  background-color: #ecf0f1;
+  border-bottom: thin dashed #bdc3c7;
+
+  color: #7f8c8d;
+}
+
+header > h1 {
+  line-height: 100px;
+}
+
+.jumbotron {
+  border-bottom: thin dashed #bdc3c7;
+}
+
+.glyphicon-huge {
+  font-size: 20em;
+  color:white;
+}
+
+/* Stick Footer */
+body, html {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -130px;
+}
+
+.push {
+  height: 130px;
+}
+
+footer {
+  height: 130px;
+  border-top: thick outset #27ae60;
+  background-color: #333;
+  color: #ecf0f1;
+}
+
+footer > div {
+  text-align: center;
+  margin-top:17px;
+}
