@@ -3,18 +3,14 @@
 <div class="row">
   <header>
     <div class="container">
-      <h1>Dashboard</h1>
+      <h1>Server Details</h1>
     </div>
   </header>
 </div>
-<div class="container" ng-controller="DashboardCtrl">
+<div class="container" ng-controller="DetailsCtrl">
   <div class="row">
     <div class="pull-left">
       <h1>Servers</h1>
-    </div>
-
-    <div class="pull-right">
-      <a class="btn btn-success" ng-href="/dashboard/create">Create API</a>
     </div>
   </div>
 
@@ -24,7 +20,6 @@
         <tr>
           <th>Name</th>
           <th>Status</th>
-          <!--<th>ID</th>-->
           <th>Port</th>
           <th>API Endpoints</th>
           <th>Actions</th>
@@ -36,12 +31,11 @@
             <span ng-show="server.status.running" class="on">Running</span>
             <span ng-hide="server.status.running" class="off">Stopped</span>
           </td>
-          <!--<td>{{server._id}}</td>-->
           <td>{{server.port}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
           <td>
-            <a class="glyphicon glyphicon-off start" ng-click="startServer(server)" href="#/dashboard"></a>
-            <a class="glyphicon glyphicon-trash trash" ng-click="deleteServer(server)" href="#/dashboard"></a>
+            <a class="glyphicon glyphicon-off start" ng-click="startServer(server)" href="#/dashboard/details"></a>
+            <a class="glyphicon glyphicon-trash trash" ng-click="deleteServer(server)" href="#/dashboard/details"></a>
           </td>
         </tr>
 

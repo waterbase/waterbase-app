@@ -22,7 +22,7 @@ app.factory('ServerService', function($http){
   return service;
 });
 
-app.controller('DashboardCtrl', function($scope, $http, $route, ServerService) {
+app.controller('DetailsCtrl', function($scope, $http, $route, ServerService) {
 
   $http.get('/api/servers').success(function(servers) {
     $scope.servers = servers;
