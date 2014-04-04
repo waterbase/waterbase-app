@@ -78,3 +78,27 @@ footer > div {
   text-align: center;
   margin-top:17px;
 }
+
+/* Dashboard */
+.container a {
+  text-decoration: none;
+}
+
+.on {
+  color: #31B404;
+}
+
+.off {
+  color: #FE2E2E;
+}
+
+.start {
+  border-right: 1px solid #ccc;
+  padding-right: 15px;
+}
+
+.trash {
+  padding-left: 10px;
+}
+
+
