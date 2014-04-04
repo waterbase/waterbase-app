@@ -1,5 +1,4 @@
 waterbase
-=============
 
 ### Simplifying RESTful APIs
 
