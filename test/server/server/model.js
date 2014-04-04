@@ -2,48 +2,39 @@
 
 var should = require('should'),
     mongoose = require('mongoose'),
-    Server = mongoose.model('Server');
+    //Server = mongoose.model('Server');
+    Server = require('../../../lib/models/server.js');
 
 var server;
 
 var serverJson = {
   name: 'testing',
   port: 3000,
-  url: 'localhost:9000/api/servers/testing',
   resources: {
     users: {
       attributes: {
         username: {
           type: 'String',
           unique: true
-        }
+        },
         age: 'Number'
       }
-    },
-    messages: {
-      attributes: {
-        text: 'String'
-      }
-    },
-    rooms: {
-      attributes: {
-        name: 'String',
-      }
     }
-  }
-}
+  },
+  user: 'Fake User'
+};
 
 describe('Server Model', function() {
   before(function(done) {
     server = new Server(serverJson);
 
-    // Clear users before testing
-    server.remove().exec();
+    // Clear before testing
+    Server.remove({}).exec();
     done();
   });
 
   afterEach(function(done) {
-    User.remove().exec();
+    Server.remove({}).exec();
     done();
   });
 
