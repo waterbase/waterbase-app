@@ -1,8 +1,8 @@
 'use strict';
 
-var should = require('should'),
-    request = require('supertest'),
-    Server = require('../../../lib/controllers/generation/Server.js'),
+var should = require('should');
+var request = require('supertest');
+var Server = require('../../../lib/controllers/generation/Server.js');
 
 describe('users api', function() {
   var server;
