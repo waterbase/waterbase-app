@@ -30,14 +30,14 @@ angular.module('hackathonApp', [
         controller: 'DashboardCtrl',
         authenticate: true
       })
-      .when('/dashboard/create', {
-        templateUrl: 'partials/newapi',
-        controller: 'NewApiCtrl',
-        authenticate: true
-      })
       .when('/dashboard/details', {
         templateUrl: 'partials/details',
         controller: 'DetailsCtrl',
+        authenticate: true
+      })
+      .when('/dashboard/create', {
+        templateUrl: 'partials/newapi',
+        controller: 'NewApiCtrl',
         authenticate: true
       })
       .otherwise({
