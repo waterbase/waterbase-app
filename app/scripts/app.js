@@ -35,6 +35,11 @@ angular.module('hackathonApp', [
         controller: 'NewApiCtrl',
         authenticate: true
       })
+      .when('/dashboard/details', {
+        templateUrl: 'partials/details',
+        controller: 'DetailsCtrl',
+        authenticate: true
+      })
       .otherwise({
         redirectTo: '/'
       });
