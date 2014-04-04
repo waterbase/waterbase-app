@@ -2,7 +2,7 @@
 
 var should = require('should'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = require('../../../lib/models/user.js');
 
 var user;
 

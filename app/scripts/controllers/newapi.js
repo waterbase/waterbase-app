@@ -11,7 +11,7 @@ angular.module('hackathonApp')
     };
     $scope.errors = {};
 
-    $scope.createApi = function (form) {
+    $scope.createApi = function () {
       $http.post('/api/servers', $scope.apiData).success(function(newApi) {
 
         console.log(newApi);
