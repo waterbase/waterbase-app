@@ -18,9 +18,10 @@
           <th ng-repeat="key in collectionKeys">{{key}}</th>
         </tr>
         <tr ng-repeat="document in collectionData">
-          <td ng-repeat="(key, value) in document">{{value}}</td>
+          <td ng-repeat="(key, value) in document"><input ng-style="{'color': '#000', 'border': 'none', 'background-color': 'transparent'}" type="text" ng-model='document[key]'></input></td>
         </tr>
       </table>
+      <button type="button" class="btn btn-success pulse" ng-click='display()'><span class="glyphicon-plus"></span></button>
     </div>
   </div>
 </div>

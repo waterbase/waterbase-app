@@ -14,4 +14,8 @@ angular.module('hackathonApp')
     ];
 
     $scope.collectionKeys = Object.keys($scope.collectionData[0]);
+
+    $scope.display = function() {
+      console.log($scope.collectionData);
+    }
   });
