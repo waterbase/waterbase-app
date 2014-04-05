@@ -1,13 +1,13 @@
-'use strict';
+/* global require, describe, before, afterEach, it */
 
-var should = require('should'),
-    mongoose = require('mongoose'),
-    //Server = mongoose.model('Server');
-    Server = require('../../../lib/models/server.js');
+var should = require('should');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/fullstack-test');
+var ServerConfig = require('../../../lib/models/ServerConfig.js');
 
-var server;
+var serverConfig;
 
-var serverJson = {
+var serverConfigJson = {
   name: 'testing',
   port: 3000,
   resources: {
@@ -24,31 +24,31 @@ var serverJson = {
   user: 'Fake User'
 };
 
-describe('Server Model', function() {
+describe('ServerConfig Model', function() {
   before(function(done) {
-    server = new Server(serverJson);
+    serverConfig = new ServerConfig(serverConfigJson);
 
     // Clear before testing
-    Server.remove({}).exec();
+    ServerConfig.remove({}).exec();
     done();
   });
 
   afterEach(function(done) {
-    Server.remove({}).exec();
+    ServerConfig.remove({}).exec();
     done();
   });
 
-  it('should begin with no servers', function(done) {
-    Server.find({}, function(err, servers) {
-      servers.should.have.length(0);
+  it('should begin with no serverConfigs', function(done) {
+    ServerConfig.find({}, function(err, serverConfigs) {
+      serverConfigs.should.have.length(0);
       done();
     });
   });
 
-  it('should fail when saving a duplicate server', function(done) {
-    server.save();
-    var serverDup = new Server(serverJson);
-    serverDup.save(function(err) {
+  it('should fail when saving a duplicate serverConfig', function(done) {
+    serverConfig.save();
+    var serverConfigDup = new ServerConfig(serverConfigJson);
+    serverConfigDup.save(function(err) {
       should.exist(err);
       done();
     });
