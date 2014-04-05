@@ -1,13 +1,15 @@
 'use strict';
 
-var should = require('should'),
-    mongoose = require('mongoose'),
-    User = mongoose.model('User');
+var should = require('should');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/fullstack-test');
+var User = require('../../../lib/models/User.js');
+// var User = mongoose.model('User');
 
 var user;
 
 describe('User Model', function() {
-  before(function(done) {
+  beforeEach(function(done) {
     user = new User({
       provider: 'local',
       name: 'Fake User',
@@ -16,8 +18,9 @@ describe('User Model', function() {
     });
 
     // Clear users before testing
-    User.remove().exec();
-    done();
+    User.remove().exec(function(){
+      done();
+    });
   });
 
   afterEach(function(done) {
@@ -26,7 +29,7 @@ describe('User Model', function() {
   });
 
   it('should begin with no users', function(done) {
-    User.find({}, function(err, users) {
+    User.find({}).exec(function(err, users) {
       users.should.have.length(0);
       done();
     });
@@ -36,6 +39,7 @@ describe('User Model', function() {
     user.save();
     var userDup = new User(user);
     userDup.save(function(err) {
+      console.log('-----------------dpu', err);
       should.exist(err);
       done();
     });
