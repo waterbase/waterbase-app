@@ -9,19 +9,34 @@
 </div>
 
 <div class="container" ng-controller="ManagerCtrl">
-  <h1>{{ collection }}</h1>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <table class="table table-striped">
-        <tr>
-          <th ng-repeat="key in collectionKeys">{{key}}</th>
-        </tr>
-        <tr ng-repeat="document in collectionData">
-          <td ng-repeat="(key, value) in document"><input ng-style="{'color': '#000', 'border': 'none', 'background-color': 'transparent'}" type="text" ng-model='document[key]'></input></td>
-        </tr>
-      </table>
-      <button type="button" class="btn btn-success pulse" ng-click='display()'><span class="glyphicon-plus"></span></button>
+  <form class="form" name="form" ng-submit="submitForm()" novalidate>
+    <h4> Resources </h4>
+    <div ng-repeat="collection in collections">
+          <button type='button' ng-click="currentCollection === collection ? false : displayCollection(collection); display=true" ng-init='display=false'> {{ collection }}</button>
     </div>
-  </div>
+
+    <div ng-show='currentCollection'>
+      <h2>{{ currentCollection }}</h2><button type='button' ng-click="addDocument()"> Add row </button>
+      <div class="row">
+        <div class="col-sm-10">
+          <table class="table table-striped">
+            <tr>
+              <th ng-repeat="key in collectionKeys">{{key}}</th>
+              <th> action </th>
+            </tr>
+            <tr ng-repeat="document in collectionData track by $index">
+              <td ng-repeat="(key, value) in document">
+                <input ng-style="{'color': '#000', 'border': 'none', 'background-color': 'transparent'}" type="text" ng-model='document[key]'></input>
+              </td>
+              <td>
+                <button type='button' ng-click="deleteDocument($index)">delete</button>
+              </td>
+            </tr>
+          </table>
+          <button type="button" class="btn btn-success pulse" ng-click='saveChanges()'>Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
+
