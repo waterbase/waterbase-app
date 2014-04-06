@@ -2,11 +2,12 @@
 
 var should = require('should');
 var request = require('supertest');
+var ServerConfig = require('../../../lib/models/ServerConfig.js');
 var Server = require('../../../lib/controllers/generation/Server.js');
 
 describe('custom server api', function() {
   var server;
-  var serverConfigJson = {
+  var serverConfig = new ServerConfig({
     name: 'testing',
     port: 3000,
     resources: {
@@ -21,7 +22,7 @@ describe('custom server api', function() {
       }
     },
     user: 'Fake User'
-  };
+  });
 
   var userJson = {
     username: 'Alice',
@@ -29,12 +30,12 @@ describe('custom server api', function() {
   };
 
   beforeEach(function(){
-    server = new Server(serverConfigJson);
-    //server.app.start();
+    server = new Server(serverConfig);
+    server.start(33333);
   });
 
   afterEach(function(){
-    //server.app.stop();
+    server.stop();
   });
 
   it('should respond to list', function(done) {
