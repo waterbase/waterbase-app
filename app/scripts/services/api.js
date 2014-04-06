@@ -2,5 +2,4 @@
 
 angular.module('hackathonApp')
   .service('Api', function Api() {
-
 });
