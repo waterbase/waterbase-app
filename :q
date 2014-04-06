@@ -1,0 +1,53 @@
+Merge branch 'server-api' of https://github.com/waterbase/waterbase-app into server-api
+
+Conflicts:
+	README.md
+	lib/config/dummydata.js
+	lib/controllers/servers.js
+	lib/models/server.js
+	lib/routes.js
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch server-api
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   README.md
+#	modified:   app/scripts/controllers/main.js
+#	modified:   app/scripts/controllers/newapi.js
+#	modified:   app/scripts/services/api.js
+#	modified:   lib/config/dummydata.js
+#	modified:   lib/config/passport.js
+#	new file:   lib/controllers/generation/ControllerSet.js
+#	new file:   lib/controllers/generation/Server.js
+#	new file:   lib/controllers/generation/createSchema.js
+#	new file:   lib/controllers/generation/routesMixin.js
+#	new file:   lib/controllers/serverConfigs.js
+#	deleted:    lib/controllers/servers.js
+#	new file:   lib/controllers/serversManager.js
+#	modified:   lib/controllers/session.js
+#	modified:   lib/controllers/users.js
+#	deleted:    lib/controllers/utils.js
+#	modified:   lib/middleware.js
+#	new file:   lib/models/ServerConfig.js
+#	renamed:    lib/models/user.js -> lib/models/User.js
+#	deleted:    lib/models/server.js
+#	modified:   lib/routes.js
+#	modified:   package.json
+#	new file:   test/server/generated/server.js
+#	new file:   test/server/server/api.js
+#	new file:   test/server/server/model.js
+#	deleted:    test/server/thing/api.js
+#	new file:   test/server/user/api.js
+#	modified:   test/server/user/model.js
+#	new file:   test/server/user/session.js
+#
