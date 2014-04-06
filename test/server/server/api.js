@@ -2,7 +2,6 @@
 
 var should = require('should');
 var app = require('../../../server');
-var app = require('../../../server');
 var Session = require('supertest-session')({app:app});
 var ServerConfig = require('../../../lib/models/ServerConfig.js');
 var User = require('../../../lib/models/User.js');
@@ -16,6 +15,43 @@ describe('serverConfig api', function() {
       name: 'testing',
       resources: {
         users: {
+          attributes: {
+            username: {
+              type: 'String',
+              unique: true
+            },
+            age: 'Number'
+          }
+        }
+      }
+    });
+    serverConfig2 = new ServerConfig({
+      name: 'testing2',
+      resources: {
+        users: {
+          attributes: {
+            username: {
+              type: 'String',
+              unique: true
+            },
+            age: 'Number'
+          }
+        }
+      }
+    });
+    serverConfigUpdate = new ServerConfig({
+      name: 'testing',
+      resources: {
+        users: {
+          attributes: {
+            username: {
+              type: 'String',
+              unique: true
+            },
+            age: 'Number'
+          }
+        },
+        accounts: {
           attributes: {
             username: {
               type: 'String',
@@ -69,81 +105,69 @@ describe('serverConfig api', function() {
     });
   });
 
-  it('should respond to remove all', function(done) {
+  it('should respond to create', function(done) {
     session
-    .get('/api/servers')
-    .expect(200)
+    .post('/api/servers')
+    .send(serverConfig2)
+    .expect(201)
     .end(function(err, res) {
       if (err) {
         return done(err);
       }
-      res.body.length.should.equal(1);
+      res.body.user.should.equal(user._id);
       done();
     });
   });
 
-  it('should respond to list', function(done) {
+  it('should respond to show', function(done) {
     session
-    .get('/api/servers')
+    .get('/api/servers/'+serverConfig._id)
     .expect(200)
     .end(function(err, res) {
       if (err) {
         return done(err);
       }
-      res.body.length.should.equal(1);
+      res.body.name.should.equal(serverConfig.name);
       done();
     });
   });
 
-  it('should respond to list', function(done) {
+  it('should respond to update', function(done) {
     session
-    .get('/api/servers')
-    .expect(200)
+    .get('/api/servers/'+serverConfig._id)
+    .send(serverConfigUpdate)
+    .expect(204)
     .end(function(err, res) {
       if (err) {
         return done(err);
       }
-      res.body.length.should.equal(1);
+      session
+      .get('/api/servers/'+serverConfig._id)
+      .expect(404)
+      .end(function(err, res){
+        if(err){
+          return done(err);
+        }
+        res.body._id.should.equal(serverConfig._id);
+        res.body.name.should.equal(serverConfigUpdate.name);
+        done();
+      });
       done();
     });
   });
 
-  it('should respond to list', function(done) {
+  it('should respond to remove', function(done) {
     session
-    .get('/api/servers')
-    .expect(200)
+    .del('/api/servers/'+serverConfig._id)
+    .expect(204)
     .end(function(err, res) {
       if (err) {
         return done(err);
       }
-      res.body.length.should.equal(1);
-      done();
-    });
-  });
-
-  it('should respond to list', function(done) {
-    session
-    .get('/api/servers')
-    .expect(200)
-    .end(function(err, res) {
-      if (err) {
-        return done(err);
-      }
-      res.body.length.should.equal(1);
-      done();
-    });
-  });
-
-  it('should respond to list', function(done) {
-    session
-    .get('/api/servers')
-    .expect(200)
-    .end(function(err, res) {
-      if (err) {
-        return done(err);
-      }
-      res.body.length.should.equal(1);
-      done();
+      session
+      .get('/api/servers/'+serverConfig._id)
+      .expect(404)
+      .end(done);
     });
   });
 });
