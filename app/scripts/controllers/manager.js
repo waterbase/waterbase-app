@@ -2,11 +2,11 @@
 
 angular.module('hackathonApp')
 
-  .controller('ManagerCtrl', function ($scope) {
+  .controller('ManagerCtrl', function ($scope,$http) {
     $scope.collections = ['users','messages'];
-    $scope.currentCollection;
+    $scope.currentCollection = undefined;
     $scope.collectionData = [];
-    var dummies = {}
+    var dummies = {};
     dummies['users'] = [{_id: 1, name: 'agchou', age: 27, notes:'hes da man!'},
       {_id: 1, name: 'agchou', age: 27, notes:'hes da man!'},
       {_id: 1, name: 'agchou', age: 27, notes:'hes da man!'},
@@ -64,6 +64,19 @@ angular.module('hackathonApp')
       // Sends entire collection back
       // POST /api/database/:id/:collection
     };
+
+
+    $http.post('/api/database/testing/collection/messages/id',
+    {documents: { name: 'agchou', age: 27, notes:'hes da man!'}})
+      .success(function(data){
+        console.log(data);
+      });
+
+    $http.get('/API/database/testing')
+      .success(function(data){
+        console.log(data);
+      });
+
 
   });
 
