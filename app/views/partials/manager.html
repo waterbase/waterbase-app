@@ -9,34 +9,46 @@
 </div>
 
 <div class="container" ng-controller="ManagerCtrl">
-  <form class="form" name="form" ng-submit="submitForm()" novalidate>
-    <h4> Resources </h4>
-    <div ng-repeat="collection in collections">
-          <button type='button' ng-click="currentCollection === collection ? false : displayCollection(collection); display=true" ng-init='display=false'> {{ collection }}</button>
-    </div>
+
+    <tabset>
+      <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-click="currentCollection === collection ? false : displayCollection(collection)" ng-init='displayCollection(collection)'></tab>
+    </tabset>
 
     <div ng-show='currentCollection'>
-      <h2>{{ currentCollection }}</h2><button type='button' ng-click="addDocument()"> Add row </button>
+      <h2>{{ currentCollection }}</h2>
       <div class="row">
         <div class="col-sm-10">
           <table class="table table-striped">
             <tr>
               <th ng-repeat="key in collectionKeys">{{key}}</th>
-              <th> action </th>
+              <th> actions </th>
             </tr>
-            <tr ng-repeat="document in collectionData track by $index">
-              <td ng-repeat="(key, value) in document">
-                <input ng-style="{'color': '#000', 'border': 'none', 'background-color': 'transparent'}" type="text" ng-model='document[key]'></input>
+            <tr ng-repeat="document in collectionData track by $index" ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
+              <td style='width:20%;height:60px' ng-repeat="(key, value) in document">
+                <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="checkName($data, value)" e-required >
+                {{ value || 'empty' }}
+                </span>
               </td>
-              <td>
-                <button type='button' ng-click="deleteDocument($index)">delete</button>
+              <td style='width:30%;height:60px'>
+                <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline">
+                  <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                    save
+                  </button>
+                  <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                    cancel
+                  </button>
+
+                </form>
+
+                <div class="buttons" ng-show="!rowform.$visible">
+                  <button class="btn btn-primary" ng-click="rowform.$show()" ng-show='showEdit'>edit</button>
+                  <button class="btn btn-danger" ng-click="deleteDocument($index)" ng-show='showEdit'>del</button>
+                </div>
               </td>
             </tr>
           </table>
-          <button type="button" class="btn btn-success pulse" ng-click='saveChanges()'>Save Changes</button>
+          <button type='button' class='btn btn-default' ng-click="addDocument()"> Add row </button>
         </div>
       </div>
     </div>
-  </form>
 </div>
-
