@@ -10,14 +10,16 @@
 
 <div class="container" ng-controller="ManagerCtrl">
 
+    <!-- Tabs of collections -->
     <tabset>
-      <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-click="currentCollection === collection ? false : displayCollection(collection)" ng-init='displayCollection(collection)'></tab>
+      <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-init='displayCollection(collection)' ng-click="currentCollection === collection ? false : displayCollection(collection)" ></tab>
     </tabset>
 
+   <!--  -->
     <div ng-show='currentCollection'>
       <h2>{{ currentCollection }}</h2>
       <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-12">
           <table class="table table-striped">
             <tr>
               <th ng-repeat="key in collectionKeys">{{key}}</th>
@@ -29,7 +31,7 @@
                 {{ value || 'empty' }}
                 </span>
               </td>
-              <td style='width:30%;height:60px'>
+              <td style='width:20%;height:60px'>
                 <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline">
                   <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                     save

@@ -33,10 +33,8 @@ angular.module('hackathonApp')
       // requestServices.getCollections(function(data){
       //   $scope.collectionData = data;
       // })
-      console.log(collection);
       $scope.currentCollection = collection;
       $scope.collectionData = dummies[collection];
-      console.log($scope.collectionData);
       $scope.collectionKeys = Object.keys($scope.collectionData[0]);
     };
 
