@@ -1,9 +1,62 @@
 'use strict';
 
-angular.module('hackathonApp')
 
-  .controller('ManagerCtrl', function ($scope,$http) {
-    $scope.collections = ['users','messages'];
+    // $http.post('/api/database/super/collection/users/id',
+    // {documents: { name: 'agchou', age: 27, notes:'hes da man!'}})
+    //   .success(function(data){
+    //     console.log(data);
+    //   });
+
+    // user collection name to get documents
+
+
+
+angular.module('hackathonApp')
+  .service('requestServices', function($http){
+
+      // getCollection : function(collection,callback){
+      //   $http.get('/api/database/:collection')
+      //     .success(function(data){
+      //       callback(data);
+      //     });
+      // },
+      // postCollections : function(callback) {
+      //   $http.post('/api/database/533f4e406ffe158c16d175d4');
+      // }
+      this.getListOfCollections = function(callback) {
+        var self = this;
+        $http.get('/API/database/super')
+          .success(function(data) {
+            var data = _.pluck(data,'name');
+            var data = _.map(data, function(element) {
+              return element.split('.')[1];
+            })
+            var collections = _.filter(data, function(element) {
+              return element !== "system";
+            })
+            self.collections = collections;
+            callback();
+          })
+      };
+      this.getDocuments = function(collection, callback) {
+        var self = this;
+        $http.get('/api/database/super/collection/' + collection)
+          .success(function(data) {
+            callback(data);
+          });
+      };
+  });
+
+angular.module('hackathonApp')
+  .controller('ManagerCtrl', function ($scope,requestServices) {
+
+
+    requestServices.getListOfCollections(function() {
+      $scope.collections = requestServices.collections;
+    });
+
+
+
     $scope.currentCollection = undefined;
     $scope.collectionData = [];
     var dummies = {};
@@ -22,20 +75,18 @@ angular.module('hackathonApp')
       {_id: 1, awesomeness: 'charles', age: 27, notes:'hes da shit!'},
     ];
 
-    $scope.getListOfCollections = function() {
-      // requestServices.getListOfCollections(function(data){
-          // $scope.collections = data;
-      // })
 
-    };
 
     $scope.displayCollection = function(collection) {
       // requestServices.getCollections(function(data){
       //   $scope.collectionData = data;
       // })
+      console.log($scope.collections);
       $scope.currentCollection = collection;
-      $scope.collectionData = dummies[collection];
-      $scope.collectionKeys = Object.keys($scope.collectionData[0]);
+      requestServices.getDocuments(collection, function(documents) {
+        $scope.collectionData = documents;
+        $scope.collectionKeys = Object.keys($scope.collectionData[0]);
+      });
     };
 
     $scope.addDocument = function() {
@@ -66,35 +117,7 @@ angular.module('hackathonApp')
     };
 
 
-    $http.post('/api/database/testing/collection/messages/id',
-    {documents: { name: 'agchou', age: 27, notes:'hes da man!'}})
-      .success(function(data){
-        console.log(data);
-      });
-
-    $http.get('/API/database/testing')
-      .success(function(data){
-        console.log(data);
-      });
-
 
   });
 
 
-  // .factory('requestServices', function($http){
-  //   var services = {
-  //     getCollection : function(collection,callback){
-  //       $http.get('/api/database/:collection')
-  //         .success(function(data){
-  //           callback(data);
-  //         });
-  //     },
-  //     postCollections : function(callback) {
-  //       $http.post('/api/database/533f4e406ffe158c16d175d4');
-  //     }
-  //     getListOfCollections: function(callback) {
-  //       $http.get('/api/database/:id');
-  //     }
-  //   };
-  //   return services;
-  // })
