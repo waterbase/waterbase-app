@@ -17,7 +17,7 @@
 
    <!--  -->
     <div ng-show='currentCollection'>
-      <h2>{{ currentCollection }}</h2>
+      <h2 ng-click='show(collectionData)'>{{ currentCollection }}</h2>
       <div class="row">
         <div class="col-sm-12">
           <table class="table table-striped">
@@ -27,12 +27,12 @@
             </tr>
             <tr ng-repeat="document in collectionData track by $index" ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
               <td style='width:20%;height:60px' ng-repeat="(key, value) in document">
-                <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="checkName($data, value)" e-required >
+                <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key)" e-required >
                 {{ value || 'empty' }}
                 </span>
               </td>
               <td style='width:20%;height:60px'>
-                <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline">
+                <form editable-form name="rowform" onbeforesave="updateDocument()" ng-show="rowform.$visible" class="form-buttons form-inline">
                   <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                     save
                   </button>
