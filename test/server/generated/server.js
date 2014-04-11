@@ -11,9 +11,9 @@ describe('custom server api', function() {
     name: 'testing',
     port: 3000,
     resources: {
-      users: {
+      animals: {
         attributes: {
-          username: {
+          name: {
             type: 'String',
             unique: true
           },
@@ -24,24 +24,28 @@ describe('custom server api', function() {
     user: 'Fake User'
   });
 
-  var userJson = {
-    username: 'Alice',
-    age: 20
+  var animalJson = {
+    name: 'Cat',
+    age: 5
   };
 
-  beforeEach(function(){
+  beforeEach(function(done){
     server = new Server(serverConfig);
-    server.start(33333);
+    server
+      .start(33333)
+      .then(done);
   });
 
-  afterEach(function(){
-    server.stop();
+  afterEach(function(done){
+    server
+      .stop()
+      .then(done);
   });
 
   it('should respond to list', function(done) {
     request(server.app)
-      .get('/users')
-      .expect(200)
+      .get('/animals')
+      //.expect(200)
       .end(function(err, res) {
         if (err) {
           return done(err);
@@ -53,7 +57,8 @@ describe('custom server api', function() {
 
   it('should respond to update all', function(done) {
     request(server.app)
-      .put('/users')
+      .put('/animals')
+      .send({})
       .expect(204)
       .end(function(err, res) {
         if (err) {
@@ -63,9 +68,9 @@ describe('custom server api', function() {
       });
   });
 
-  it('should respond to update all', function(done) {
+  it('should respond to delete all', function(done) {
     request(server.app)
-      .del('/users')
+      .del('/animals')
       .expect(204)
       .end(function(err, res) {
         if (err) {
@@ -78,8 +83,8 @@ describe('custom server api', function() {
   //create
   it('should respond to create', function(done) {
     request(server.app)
-      .post('/users')
-      .send(userJson)
+      .post('/animals')
+      .send(animalJson)
       .expect(202)
       .end(function(err, res) {
         if (err) {
@@ -91,24 +96,24 @@ describe('custom server api', function() {
 
   //elements
   describe('elements', function(){
-    var user;
+    var animal;
     beforeEach(function(done){
       request(server.app)
-        .post('/users')
-        .send(userJson)
+        .post('/animals')
+        .send(animalJson)
         .end(function(err, res) {
           if (err) {
             return done(err);
           }
-          user = res;
+          animal = res;
           done();
         });
     });
 
     it('should respond to show', function(done) {
       request(server.app)
-        .get('/users/'+user.id)
-        .send(userJson)
+        .get('/animals/'+animal.id)
+        .send(animalJson)
         .expect(200)
         .end(function(err, res) {
           if (err) {
@@ -120,7 +125,7 @@ describe('custom server api', function() {
 
     it('should respond to updateOne', function(done) {
       request(server.app)
-        .put('/users/'+user.id)
+        .put('/animals/'+animal.id)
         .send({
           age: 30
         })
@@ -130,14 +135,14 @@ describe('custom server api', function() {
             return done(err);
           }
           request(server.app)
-            .get('/users/'+user.id)
-            .send(userJson)
+            .get('/animals/'+animal.id)
+            .send(animalJson)
             .expect(204)
             .end(function(err, res) {
               if (err) {
                 return done(err);
               }
-              //TODO expect user.age to be 30
+              //TODO expect animal.age to be 30
               done();
             });
         });
@@ -145,16 +150,16 @@ describe('custom server api', function() {
 
     it('should respond to deleteOne', function(done) {
       request(server.app)
-        .del('/users/'+user.id)
-        .send(userJson)
+        .del('/animals/'+animal.id)
+        .send(animalJson)
         .expect(204)
         .end(function(err) {
           if (err) {
             return done(err);
           }
           request(server.app)
-            .get('/users/'+user.id)
-            .send(userJson)
+            .get('/animals/'+animal.id)
+            .send(animalJson)
             .expect(404)
             .end(function() {
               done();
