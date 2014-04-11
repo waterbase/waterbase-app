@@ -17,7 +17,7 @@
 
    <!--  -->
     <div ng-show='currentCollection'>
-      <h2 ng-click='show(collectionData)'>{{ currentCollection }}</h2>
+      <h2>{{ currentCollection }}</h2>
       <div class="row">
         <div class="col-sm-12">
           <table class="table table-striped">
@@ -44,7 +44,7 @@
 
                 <div class="buttons" ng-show="!rowform.$visible">
                   <button class="btn btn-primary" ng-click="rowform.$show()" ng-show='showEdit'>edit</button>
-                  <button class="btn btn-danger" ng-click="deleteDocument($index)" ng-show='showEdit'>del</button>
+                  <button class="btn btn-danger" ng-click="deleteDocument(document)" ng-show='showEdit'>del</button>
                 </div>
               </td>
             </tr>

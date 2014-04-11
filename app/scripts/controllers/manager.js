@@ -26,12 +26,30 @@ angular.module('hackathonApp')
             callback(data);
           });
       };
-      this.updateDocument = function(doc,id) {
-        $http.put('/api/database/testing/collection/messages/id/' + id ,doc)
+      this.updateDocument = function(doc,id,callback) {
+        return $http.put('/api/database/testing/collection/messages/id/' + id ,doc)
         .success(function() {
           console.log('document successfully updated');
         })
+        .error(function() {
+          console.log('document failed to update');
+        });
       };
+      this.deleteDocument = function(id) {
+        return $http.delete('/api/database/testing/collection/messages/id/' + id)
+          .success(function() {
+            console.log('document successfully deleted');
+          })
+          .error(function() {
+            console.log('document could not be deleted');
+          })
+      }
+      this.createDocument = function(doc) {
+        $http.post('/api/database/testing/collection/messages/id',doc)
+          .success(function() {
+            console.log('document successfully created!');
+          })
+      }
   });
 
 
@@ -39,58 +57,45 @@ angular.module('hackathonApp')
   .controller('ManagerCtrl', function ($scope,requestServices) {
 
     $scope.temp = {};
-    requestServices.getListOfCollections(function(collections) {
-      $scope.collections = collections;
-    });
-
     $scope.currentCollection = undefined;
     $scope.collectionData = [];
 
+    requestServices.getListOfCollections(function(collections) {
+      $scope.collections = collections;
+    });
     $scope.displayCollection = function(collection) {
-      // requestServices.getCollections(function(data){
-      //   $scope.collectionData = data;
-      // })
       $scope.currentCollection = collection;
       requestServices.getDocuments(collection, function(documents) {
         $scope.collectionData = documents;
         $scope.collectionKeys = Object.keys($scope.collectionData[0]).sort();
       });
     };
-
     $scope.addDocument = function() {
-      // properties found from database
-      var newDocument = {};
-      for (var key in $scope.collectionKeys) {
-        var value = $scope.collectionKeys[key];
-        console.log(value);
-        if (value === '_id') {
-          newDocument['_id'] =  1; // increment using last value in current collectionData
-        } else {
-          newDocument[value] = '';
+      // create new blank document in database
+      var keys = Object.keys($scope.collectionData[0])
+      var blankDoc = {};
+      for (var i = 0; i < keys.length; i++) {
+        if (keys[i] !== '_id') {
+          blankDoc[keys[i]] = '';
         }
       }
-      $scope.collectionData.push(newDocument);
+      requestServices.createDocument(blankDoc);
+      $scope.displayCollection($scope.currentCollection);
     };
-    $scope.deleteDocument = function(index) {
-      $scope.collectionData.splice(index,1);
+    $scope.deleteDocument = function(doc) {
+      var id = doc._id
+      requestServices.deleteDocument(id);
+      $scope.displayCollection($scope.currentCollection);
     };
-    $scope.deleteCollection = function() {
-      // DELETE /api/database/:id/:collection
-      // switch to another collection
-    };
-
-    $scope.saveDocument = function(document, key) {
-      $scope.temp[key] = document;
+    $scope.saveDocument = function(value, key) {
+      $scope.temp[key] = value;
     };
     $scope.updateDocument = function() {
       var id = $scope.temp._id;
       var doc = _.omit($scope.temp, '_id');
-      requestServices.updateDocument(doc,id);
+      $scope.temp = {}; // resets temp for next document
+      return requestServices.updateDocument(doc,id);
     }
-    $scope.show = function(collection) {
-      console.log(collection);
-    }
-
 
   });
 
