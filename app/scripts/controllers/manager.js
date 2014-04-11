@@ -21,19 +21,15 @@ angular.module('hackathonApp')
           })
       };
       this.getDocuments = function(collection, callback) {
-        var self = this;
         $http.get('/api/database/testing/collection/' + collection)
           .success(function(data) {
             callback(data);
           });
       };
-      this.updateDocument = function(document) {
-        var id = document._id;
-        var doc = _.omit(document, '_id');
-        console.log(doc);
+      this.updateDocument = function(doc,id) {
         $http.put('/api/database/testing/collection/messages/id/' + id ,doc)
-        .success(function(data) {
-          console.log('document successfully updated: ',data)
+        .success(function() {
+          console.log('document successfully updated');
         })
       };
   });
@@ -83,12 +79,13 @@ angular.module('hackathonApp')
       // switch to another collection
     };
 
-
     $scope.saveDocument = function(document, key) {
       $scope.temp[key] = document;
     };
     $scope.updateDocument = function() {
-      requestServices.updateDocument(document);
+      var id = $scope.temp._id;
+      var doc = _.omit($scope.temp, '_id');
+      requestServices.updateDocument(doc,id);
     }
     $scope.show = function(collection) {
       console.log(collection);
