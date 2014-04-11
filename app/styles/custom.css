@@ -78,3 +78,33 @@ footer > div {
   text-align: center;
   margin-top:17px;
 }
+
+.resource {
+  border-radius: 4px 4px;
+  background-color: #eee;
+  margin: 20px 10px 10px 10px;
+  padding: 20px 5px 15px 25px;
+  width: 550px;
+}
+
+/* Dashboard */
+.container a {
+  text-decoration: none;
+}
+
+.on {
+  color: #31B404;
+}
+
+.off {
+  color: #FE2E2E;
+}
+
+.start {
+  border-right: 1px solid #ccc;
+  padding-right: 15px;
+}
+
+.trash {
+  padding-left: 10px;
+}

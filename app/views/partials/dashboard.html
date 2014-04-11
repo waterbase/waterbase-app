@@ -10,7 +10,7 @@
 <div class="container" ng-controller="DashboardCtrl">
   <div class="row">
     <div class="pull-left">
-      <h1>APIs</h1>
+      <h1>Servers</h1>
     </div>
 
     <div class="pull-right">
@@ -22,33 +22,30 @@
     <div class="col-sm-12">
       <table class="table table-striped">
         <tr>
-          <th>name</th>
-          <th>ID</th>
-          <th>port</th>
-          <th>API</th>
+          <th>Name</th>
+          <th>Status</th>
+          <!--<th>ID</th>-->
+          <th>Port</th>
+          <th>API Endpoints</th>
           <th>Actions</th>
         </tr>
+
+        <!-- list servers -->
         <tr ng-repeat="server in servers">
-          <td>{{server.name}}</td>
-          <td>{{server._id}}</td>
+          <td><a class="" ng-href="/dashboard/details">{{server.name}}</a></td>
+          <td>
+            <span ng-show="server.status.running" class="on">Running</span>
+            <span ng-hide="server.status.running" class="off">Stopped</span>
+          </td>
+          <!--<td>{{server._id}}</td>-->
           <td>{{server.port}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
           <td>
-            <div class="dropdown">
-              <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                Dropdown
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-              </ul>
-            </div>
+            <a class="glyphicon glyphicon-off start" ng-click="startServer(server)" href="#/dashboard"></a>
+            <a class="glyphicon glyphicon-trash trash" ng-click="deleteServer(server)" href="#/dashboard"></a>
           </td>
         </tr>
+
       </table>
     </div>
   </div>
