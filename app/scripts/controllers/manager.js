@@ -87,8 +87,13 @@ angular.module('hackathonApp')
       requestServices.deleteDocument(id);
       $scope.displayCollection($scope.currentCollection);
     };
-    $scope.saveDocument = function(value, key) {
+    $scope.saveDocument = function(value, key, doc) {
       $scope.temp[key] = value;
+      if (key === '_id') {
+        if (doc['_id'] !== $scope.temp['_id']) {
+          return false;
+        }
+      }
     };
     $scope.updateDocument = function() {
       var id = $scope.temp._id;
