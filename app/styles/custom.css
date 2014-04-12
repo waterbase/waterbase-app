@@ -24,8 +24,11 @@
 
 .navbar-default .navbar-brand {
   color: white;
-  font-weight: bold;
   font-size: 25px;
+}
+
+.navbar-brand:hover {
+  color: white;
 }
 
 header {

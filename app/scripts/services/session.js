@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hackathonApp')
+angular.module('waterbaseApp')
   .factory('Session', function ($resource) {
     return $resource('/api/session/');
   });

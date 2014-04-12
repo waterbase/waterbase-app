@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hackathonApp')
+angular.module('waterbaseApp')
   .factory('ServerService', function($http){
     var service = {
       startServer: function (server) {

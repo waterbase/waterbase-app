@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hackathonApp')
+angular.module('waterbaseApp')
   .controller('NewApiCtrl', function ($scope, $http, $location) {
     $scope.resourceCount = 0;
     $scope.attributeCount = 0;
@@ -11,16 +11,16 @@ angular.module('hackathonApp')
     };
     $scope.errors = {};
 
-    $scope.createApi = function () {
-      $http.post('/api/servers', $scope.apiData).success(function(newApi) {
+    // $scope.createApi = function () {
+    //   $http.post('/api/servers', $scope.apiData).success(function(newApi) {
 
-        $location.path('/dashboard');
-      });
-    };
+    //     $location.path('/dashboard');
+    //   });
+    // };
   });
 
-angular.module('hackathonApp')
-  .controller('testController', ['$scope', '$http', function($scope,$http) {
+angular.module('waterbaseApp')
+  .controller('newApiController', ['$scope', '$http', '$location', function($scope,$http,$location) {
     $scope.resources = [{resourceName: '', attributes: [{name:'', type:''}]}];
     $scope.createNewField = function() {
       var resource = {resourceName: '', attributes: [{name:'', type:''}]};
@@ -63,7 +63,8 @@ angular.module('hackathonApp')
         .success(function(res) {
           // add spinner
           console.log(res);
+          $location.path('/dashboard');
         });
-    }
+    };
     // post jsonConfig file
   }]);

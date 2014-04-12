@@ -3,7 +3,7 @@
 describe('Controller: NewapiCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('hackathonApp'));
+  beforeEach(module('waterbaseApp'));
 
   var NewapiCtrl,
     scope,
