@@ -34,15 +34,15 @@
         <tr ng-repeat="server in servers">
           <td><a class="" ng-href="/dashboard/details">{{server.name}}</a></td>
           <td>
-            <span ng-show="server.status.running" class="on">Running</span>
-            <span ng-hide="server.status.running" class="off">Stopped</span>
+            <span ng-show="server.status.port" class="on">Running</span>
+            <span ng-hide="server.status.port" class="off">Stopped</span>
           </td>
           <!--<td>{{server._id}}</td>-->
-          <td>{{server.port}}</td>
+          <td>{{server.status.port}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
           <td>
-            <a class="glyphicon glyphicon-off start" ng-click="startServer(server)" href="#/dashboard"></a>
-            <a class="glyphicon glyphicon-trash trash" ng-click="deleteServer(server)" href="#/dashboard"></a>
+            <a class="glyphicon glyphicon-off start" ng-click="toggleServer(server)" href=""></a>
+            <a class="glyphicon glyphicon-trash trash" ng-click="deleteServer(server)" href=""></a>
           </td>
         </tr>
 
