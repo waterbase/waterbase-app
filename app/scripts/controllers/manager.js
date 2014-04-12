@@ -21,14 +21,13 @@ angular.module('hackathonApp')
             })
         },
         getDocuments: function(callback) {
-          console.log(this.currentCollection);
           $http.get('/api/database/testing/collection/' + this.currentCollection)
             .success(function(data) {
               callback(data);
             });
         },
         updateDocument: function(doc,id,callback) {
-          return $http.put('/api/database/testing/collection/messages/id/' + id ,doc)
+          return $http.put('/api/database/testing/collection/' + this.currentCollection + '/id/' + id ,doc)
           .success(function() {
             console.log('document successfully updated');
           })
@@ -37,7 +36,7 @@ angular.module('hackathonApp')
           });
         },
         deleteDocument: function(id) {
-          return $http.delete('/api/database/testing/collection/messages/id/' + id)
+          return $http.delete('/api/database/testing/collection/' + this.currentCollection + '/id/' + id)
             .success(function() {
               console.log('document successfully deleted');
             })
@@ -46,7 +45,7 @@ angular.module('hackathonApp')
             })
         },
         createDocument: function(doc) {
-          $http.post('/api/database/testing/collection/messages/id',doc)
+          $http.post('/api/database/testing/collection/' + this.currentCollection + '/id',doc)
             .success(function() {
               console.log('document successfully created!');
             })
@@ -60,13 +59,6 @@ angular.module('hackathonApp')
   .controller('ManagerCtrl', function ($scope,requestServices) {
 
     $scope.temp = {};
-    requestServices.getListOfCollections(function(collections) {
-      $scope.collections = collections;
-      console.log($scope.collections);
-    });
-
-
-
     $scope.currentCollection = undefined;
     $scope.collectionData = [];
 
@@ -104,5 +96,11 @@ angular.module('hackathonApp')
       $scope.temp = {}; // resets temp for next document
       return requestServices.updateDocument(doc,id);
     }
+
+    requestServices.getListOfCollections(function(collections) {
+      $scope.collections = collections;
+      console.log(collections);
+    });
+
   });
 
