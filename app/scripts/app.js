@@ -35,6 +35,10 @@ angular.module('hackathonApp', [
         controller: 'NewApiCtrl',
         authenticate: true
       })
+      .when('/manager', {
+        templateUrl: 'partials/manager',
+        controller: 'ManagerCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

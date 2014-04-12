@@ -1,0 +1,26 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div class="row">
+  <header>
+    <div class="container">
+      <h1>Database Manager</h1>
+    </div>
+  </header>
+</div>
+
+<div class="container" ng-controller="ManagerCtrl">
+  <h1>{{ collection }}</h1>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-striped">
+        <tr>
+          <th ng-repeat="key in collectionKeys">{{key}}</th>
+        </tr>
+        <tr ng-repeat="document in collectionData">
+          <td ng-repeat="(key, value) in document">{{value}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
