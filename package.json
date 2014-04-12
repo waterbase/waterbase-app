@@ -10,7 +10,8 @@
     "passport-local": "~0.1.6",
     "ejs": "~0.8.4",
     "supertest-session": "0.0.1",
-    "socket.io": "^0.9.16"
+    "socket.io": "^0.9.16",
+    "mongodb": "^1.4.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
