@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hackathonApp')
+angular.module('waterbaseApp')
   .controller('SignupCtrl', function ($scope, Auth, $location) {
     $scope.user = {};
     $scope.errors = {};

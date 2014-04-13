@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hackathonApp')
+angular.module('waterbaseApp')
   .factory('User', function ($resource) {
     return $resource('/api/users/:id', {
       id: '@id'

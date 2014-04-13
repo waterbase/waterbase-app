@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('hackathonApp')
+angular.module('waterbaseApp')
   .service('Api', function Api() {
 });
