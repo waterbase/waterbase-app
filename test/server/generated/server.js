@@ -2,17 +2,16 @@
 
 var should = require('should');
 var request = require('supertest');
+var ServerConfig = require('../../../lib/models/ServerConfig.js');
 var Server = require('../../../lib/controllers/generation/Server.js');
 
 describe('custom server api', function() {
-  var server;
-  var serverConfigJson = {
+  var serverConfig = new ServerConfig({
     name: 'testing',
-    port: 3000,
     resources: {
-      users: {
+      animals: {
         attributes: {
-          username: {
+          name: {
             type: 'String',
             unique: true
           },
@@ -21,50 +20,65 @@ describe('custom server api', function() {
       }
     },
     user: 'Fake User'
+  });
+  var server = new Server(serverConfig);
+
+  var animalJson = {
+    name: 'Cat',
+    age: 5
   };
 
-  var userJson = {
-    username: 'Alice',
-    age: 20
-  };
-
-  beforeEach(function(){
-    server = new Server(serverConfigJson);
-    //server.app.start();
+  beforeEach(function(done){
+    server
+      .start(33333)
+      .then(function(next){
+        done();
+        next();
+      });
   });
 
-  afterEach(function(){
-    //server.app.stop();
+  afterEach(function(done){
+    server
+      .stop()
+      .then(function(next){
+        done();
+        next();
+      });
   });
 
-  it('should respond to list', function(done) {
+  xit('should respond to list', function(done) {
     request(server.app)
-      .get('/users')
+      .get('/animals')
       .expect(200)
       .end(function(err, res) {
         if (err) {
           return done(err);
         }
-        console.log('+++++++', res.body);
         done();
       });
   });
 
   it('should respond to update all', function(done) {
+    try{
     request(server.app)
-      .put('/users')
-      .expect(204)
+      .put('/animals')
+      .send({})
+      .expect(205)
       .end(function(err, res) {
+        console.log('====== update all');
         if (err) {
           return done(err);
         }
         done();
       });
+    } catch (err){
+      console.trace(err);
+    } 
   });
 
-  it('should respond to update all', function(done) {
+  xit('should respond to delete all', function(done) {
     request(server.app)
-      .del('/users')
+      .del('/animals')
       .expect(204)
       .end(function(err, res) {
         if (err) {
@@ -75,11 +89,11 @@ describe('custom server api', function() {
   });
 
   //create
-  it('should respond to create', function(done) {
+  xit('should respond to create', function(done) {
     request(server.app)
-      .post('/users')
-      .send(userJson)
-      .expect(202)
+      .post('/animals')
+      .send(animalJson)
+      .expect(201)
       .end(function(err, res) {
         if (err) {
           return done(err);
@@ -89,25 +103,37 @@ describe('custom server api', function() {
   });
 
   //elements
-  describe('elements', function(){
-    var user;
+  xdescribe('elements', function(){
+    var animal;
     beforeEach(function(done){
       request(server.app)
-        .post('/users')
-        .send(userJson)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-          user = res;
-          done();
+        .del('/animals')
+        .end(function(){
+          request(server.app)
+            .post('/animals')
+            .send(animalJson)
+            .end(function(err, res) {
+              if (err) {
+                return done(err);
+              }
+              animal = res.body;
+              console.log('create for element test', animal);
+              done();
+            });
         });
     });
 
-    it('should respond to show', function(done) {
+    afterEach(function(done){
       request(server.app)
-        .get('/users/'+user.id)
-        .send(userJson)
+        .del('/animals')
+        .end(done);
+    })
+
+    it('should respond to show', function(done) {
+      console.log('testing show')
+      request(server.app)
+        .get('/animals/'+animal._id)
+        .send(animalJson)
         .expect(200)
         .end(function(err, res) {
           if (err) {
@@ -118,8 +144,9 @@ describe('custom server api', function() {
     });
 
     it('should respond to updateOne', function(done) {
+      console.log('testing update')
       request(server.app)
-        .put('/users/'+user.id)
+        .put('/animals/'+animal._id)
         .send({
           age: 30
         })
@@ -129,31 +156,32 @@ describe('custom server api', function() {
             return done(err);
           }
           request(server.app)
-            .get('/users/'+user.id)
-            .send(userJson)
+            .get('/animals/'+animal._id)
+            .send(animalJson)
             .expect(204)
             .end(function(err, res) {
               if (err) {
                 return done(err);
               }
-              //TODO expect user.age to be 30
+              //TODO expect animal.age to be 30
               done();
             });
         });
     });
 
     it('should respond to deleteOne', function(done) {
+      console.log('testing delete')
       request(server.app)
-        .del('/users/'+user.id)
-        .send(userJson)
+        .del('/animals/'+animal._id)
+        .send(animalJson)
         .expect(204)
         .end(function(err) {
           if (err) {
             return done(err);
           }
           request(server.app)
-            .get('/users/'+user.id)
-            .send(userJson)
+            .get('/animals/'+animal._id)
+            .send(animalJson)
             .expect(404)
             .end(function() {
               done();

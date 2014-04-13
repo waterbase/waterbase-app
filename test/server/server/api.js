@@ -7,7 +7,8 @@ var ServerConfig = require('../../../lib/models/ServerConfig.js');
 var User = require('../../../lib/models/User.js');
 
 describe('serverConfig api', function() {
-  var user, serverConfig;
+  var user;
+  var serverConfig;
   var session;
 
   before(function(done){
@@ -112,9 +113,10 @@ describe('serverConfig api', function() {
     .expect(201)
     .end(function(err, res) {
       if (err) {
+        console.log('err', err);
         return done(err);
       }
-      res.body.user.should.equal(user._id);
+      res.body.user.should.equal(user._id+'');
       done();
     });
   });
@@ -136,23 +138,22 @@ describe('serverConfig api', function() {
     session
     .get('/api/servers/'+serverConfig._id)
     .send(serverConfigUpdate)
-    .expect(204)
+    .expect(200)
     .end(function(err, res) {
       if (err) {
         return done(err);
       }
       session
       .get('/api/servers/'+serverConfig._id)
-      .expect(404)
+      .expect(200)
       .end(function(err, res){
         if(err){
           return done(err);
         }
-        res.body._id.should.equal(serverConfig._id);
+        res.body._id.should.equal(serverConfig._id+'');
         res.body.name.should.equal(serverConfigUpdate.name);
         done();
       });
-      done();
     });
   });
 
