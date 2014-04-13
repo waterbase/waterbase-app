@@ -1,26 +1,7 @@
 'use strict';
 
 angular.module('waterbaseApp')
-  .controller('NewApiCtrl', function ($scope, $http, $location) {
-    $scope.resourceCount = 0;
-    $scope.attributeCount = 0;
-    $scope.api = {
-      name: '',
-      port: 0,
-      resources: {}
-    };
-    $scope.errors = {};
-
-    // $scope.createApi = function () {
-    //   $http.post('/api/servers', $scope.apiData).success(function(newApi) {
-
-    //     $location.path('/dashboard');
-    //   });
-    // };
-  });
-
-angular.module('waterbaseApp')
-  .controller('newApiController', ['$scope', '$http', '$location', function($scope,$http,$location) {
+  .controller('NewApiCtrl', ['$scope', '$http', '$location', function($scope,$http,$location) {
     $scope.resources = [{resourceName: '', attributes: [{name:'', type:''}]}];
     $scope.createNewField = function() {
       var resource = {resourceName: '', attributes: [{name:'', type:''}]};
