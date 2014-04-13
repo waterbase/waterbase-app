@@ -7,7 +7,8 @@ var ServerConfig = require('../../../lib/models/ServerConfig.js');
 var User = require('../../../lib/models/User.js');
 
 describe('serverConfig api', function() {
-  var user, serverConfig;
+  var user;
+  var serverConfig;
   var session;
 
   before(function(done){
