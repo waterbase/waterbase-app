@@ -56,18 +56,21 @@ angular.module('hackathonApp')
 
 
 angular.module('hackathonApp')
-  .controller('ManagerCtrl', function ($scope,requestServices) {
+  .controller('ManagerCtrl', function ($scope,requestServices,$timeout) {
 
     $scope.temp = {};
     $scope.currentCollection = undefined;
     $scope.collectionData = [];
+    $scope.animate = false;
 
     $scope.displayCollection = function(collection) {
       $scope.currentCollection = collection;
       requestServices.currentCollection = collection;
       requestServices.getDocuments(function(documents) {
         $scope.collectionData = documents;
-        $scope.collectionKeys = Object.keys($scope.collectionData[0]).sort();
+        if ($scope.collectionData.length > 0) {
+          $scope.collectionKeys = Object.keys($scope.collectionData[0]).sort();
+        }
       });
     };
     $scope.addDocument = function() {
@@ -83,9 +86,11 @@ angular.module('hackathonApp')
       $scope.displayCollection($scope.currentCollection);
     };
     $scope.deleteDocument = function(doc) {
-      var id = doc._id
-      requestServices.deleteDocument(id);
-      $scope.displayCollection($scope.currentCollection);
+      $timeout(function() {
+        var id = doc._id
+        requestServices.deleteDocument(id);
+        $scope.displayCollection($scope.currentCollection);
+      },500);
     };
     $scope.saveDocument = function(value, key, doc) {
       $scope.temp[key] = value;
