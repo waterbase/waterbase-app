@@ -108,3 +108,13 @@ footer > div {
 .trash {
   padding-left: 10px;
 }
+
+/*Database Manager*/
+
+.document {
+  -webkit-transition: background-color 0.5s ease-in-out;
+}
+
+.delete {
+  background-color: yellow;
+}

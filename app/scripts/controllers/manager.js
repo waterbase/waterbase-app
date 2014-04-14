@@ -1,8 +1,5 @@
 'use strict';
 
-
-
-
 angular.module('hackathonApp')
   .factory('requestServices', function($http) {
       var service = {
@@ -26,7 +23,7 @@ angular.module('hackathonApp')
               callback(data);
             });
         },
-        updateDocument: function(doc,id,callback) {
+        updateDocument: function(doc,id) {
           return $http.put('/api/database/testing/collection/' + this.currentCollection + '/id/' + id ,doc)
           .success(function() {
             console.log('document successfully updated');
@@ -94,11 +91,6 @@ angular.module('hackathonApp')
     };
     $scope.saveDocument = function(value, key, doc) {
       $scope.temp[key] = value;
-      if (key === '_id') {
-        if (doc['_id'] !== $scope.temp['_id']) {
-          return false;
-        }
-      }
     };
     $scope.updateDocument = function() {
       var id = $scope.temp._id;
