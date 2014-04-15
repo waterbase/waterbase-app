@@ -114,10 +114,8 @@ footer > div {
 
 /*Database Manager*/
 
-.document {
-  -webkit-transition: background-color 0.5s ease-in-out;
+.document :hover {
+  background-color: yellow;
+  opacity: 50%;
 }
 
-.delete {
-  background-color: yellow;
-}

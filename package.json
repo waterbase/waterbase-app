@@ -9,14 +9,9 @@
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
     "ejs": "~0.8.4",
-<<<<<<< HEAD
-    "mongodb": "^1.4.0",
-    "socket.io": "^0.9.16"
-=======
     "supertest-session": "0.0.1",
     "socket.io": "^0.9.16",
     "mongodb": "^1.4.0"
->>>>>>> master
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -9,15 +9,14 @@
 </div>
 
 <div class="container" ng-controller="ManagerCtrl">
-
-    <!-- Tabs of collections -->
+    <h2 >{{ currentDatabase }} database</h2>
+    </br>
     <tabset>
-      <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-init='displayCollection(collections[0])' ng-click="currentCollection === collection ? false : displayCollection(collection)" ></tab>
+      <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-init='displayCollection(collections[0])' ng-click="currentCollection === collection ? false : displayCollection(collection)"></tab>
     </tabset>
-
-   <!--  -->
     <div ng-show='currentCollection'>
-      <h2 >{{ currentCollection }}</h2>
+    </br>
+    </br>
       <div class="row">
         <div class="col-sm-12">
           <table class="table table-striped">
@@ -26,7 +25,7 @@
               <th> actions </th>
             </tr>
 
-            <tr ng-repeat="document in collectionData track by $index" ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
+            <tr ng-repeat="document in collectionData track by $index"   ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
 
               <td style='width:20%;height:60px' ng-repeat="(key, value) in document" >
                 <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"  e-required >
