@@ -3,7 +3,7 @@
 describe('Service: Api', function () {
 
   // load the service's module
-  beforeEach(module('hackathonApp'));
+  beforeEach(module('waterbaseApp'));
 
   // instantiate service
   var Api;

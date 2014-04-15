@@ -1,6 +1,5 @@
 'use strict';
 
-angular.module('hackathonApp')
+angular.module('waterbaseApp')
   .service('Api', function Api() {
-    // AngularJS will instantiate a singleton by calling "new" on this function
 });

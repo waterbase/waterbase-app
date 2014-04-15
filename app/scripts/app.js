@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hackathonApp', [
+angular.module('waterbaseApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
