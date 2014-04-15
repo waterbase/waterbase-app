@@ -4,7 +4,9 @@ angular.module('waterbaseApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'xeditable',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -35,7 +37,7 @@ angular.module('waterbaseApp', [
         controller: 'NewApiCtrl',
         authenticate: true
       })
-      .when('/manager', {
+      .when('/manager/:database', {
         templateUrl: 'partials/manager',
         controller: 'ManagerCtrl'
       })

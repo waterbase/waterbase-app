@@ -111,3 +111,11 @@ footer > div {
 .trash {
   padding-left: 10px;
 }
+
+/*Database Manager*/
+
+.document :hover {
+  background-color: yellow;
+  opacity: 50%;
+}
+
