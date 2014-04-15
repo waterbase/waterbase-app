@@ -2,7 +2,7 @@
 
 angular.module('waterbaseApp')
   .controller('DashboardCtrl', function($scope, $http, $route, ServerService) {
-    
+
     $scope.getServers = function() {
       ServerService.getServers().success(function(servers) {
         $scope.servers = servers;
@@ -34,11 +34,10 @@ angular.module('waterbaseApp')
           console.log('Server stopped');
         });
       } else {
+        server.status.port = 'pending';
         ServerService.startServer(server).success(function() {
-          //server.status.port = 'pending';
           $scope.getServers();
           console.log('Server started');
-          //$route.reload();
         });
       }
     };
