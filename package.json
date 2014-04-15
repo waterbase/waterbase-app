@@ -1,5 +1,5 @@
 {
-  "name": "hackathon",
+  "name": "waterbase-app",
   "version": "0.0.0",
   "dependencies": {
     "express": "~3.4.3",
@@ -9,6 +9,8 @@
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
     "ejs": "~0.8.4",
+    "supertest-session": "0.0.1",
+    "socket.io": "^0.9.16",
     "mongodb": "^1.4.0"
   },
   "devDependencies": {
