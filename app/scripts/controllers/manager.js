@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('waterbaseApp')
-
   .factory('requestServices', function($http,$routeParams) {
       var service = {
         currentCollection:'',
@@ -10,15 +9,15 @@ angular.module('waterbaseApp')
           $http.get('/API/database/' + this.currentDatabase)
             .success(function(data) {
               console.log(data);
-              var data = _.pluck(data,'name');
-              var data = _.map(data, function(element) {
+              data = _.pluck(data,'name');
+              data = _.map(data, function(element) {
                 return element.split('.')[1];
-              })
+              });
               var collections = _.filter(data, function(element) {
-                return element !== "system";
-              })
+                return element !== 'system';
+              });
               callback(collections);
-            })
+            });
         },
         getDocuments: function(callback) {
           $http.get('/api/database/' + this.currentDatabase + '/' + this.currentCollection)
@@ -42,18 +41,17 @@ angular.module('waterbaseApp')
             })
             .error(function() {
               console.log('document could not be deleted');
-            })
+            });
         },
         createDocument: function(doc) {
           $http.post('/api/database/' + this.currentDatabase + '/' + this.currentCollection,doc)
             .success(function() {
               console.log('document successfully created!');
-            })
+            });
         }
-      }
+      };
       return service;
-  });
-
+    });
 
 angular.module('waterbaseApp')
   .controller('ManagerCtrl', function ($scope,requestServices,$timeout) {
@@ -77,7 +75,7 @@ angular.module('waterbaseApp')
     };
     $scope.addDocument = function() {
       // create new blank document in database
-      var keys = Object.keys($scope.collectionData[0])
+      var keys = Object.keys($scope.collectionData[0]);
       var blankDoc = {};
       for (var i = 0; i < keys.length; i++) {
         if (keys[i] !== '_id') {
@@ -89,7 +87,7 @@ angular.module('waterbaseApp')
     };
     $scope.deleteDocument = function(doc) {
       $timeout(function() {
-        var id = doc._id
+        var id = doc._id;
         requestServices.deleteDocument(id);
         $scope.displayCollection($scope.currentCollection);
       },500);
@@ -102,12 +100,10 @@ angular.module('waterbaseApp')
       var doc = _.omit($scope.temp, '_id');
       $scope.temp = {}; // resets temp for next document
       return requestServices.updateDocument(doc,id);
-    }
+    };
 
     requestServices.getListOfCollections(function(collections) {
       $scope.collections = collections;
       console.log(collections);
     });
-
   });
-
