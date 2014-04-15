@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('waterbaseApp')
-  .controller('ManagerCtrl', function ($scope) {
+  .controller('ManagerCtrl', function ($scope, $routeParams) {
+    $scope.dbName = $routeParams.database;
+
     $scope.collection = 'Users';
 
     $scope.collectionData = [
