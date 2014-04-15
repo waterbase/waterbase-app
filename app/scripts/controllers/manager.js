@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('waterbaseApp')
+
   .factory('requestServices', function($http,$routeParams) {
       var service = {
         currentCollection:'',
