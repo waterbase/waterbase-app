@@ -125,6 +125,7 @@ footer > div {
 .action {
   vertical-align: text-top;
   display: inline-block;
+  margin: 0;
 }
 
 /*Database Manager*/
