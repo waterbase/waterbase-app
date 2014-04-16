@@ -1,38 +1,32 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-<div class="row">
+<div ng-controller="DashboardCtrl">
   <header>
     <div class="container">
-      <h1>Dashboard</h1>
+      <h2>Dashboard</h2>
     </div>
   </header>
-</div>
-<div class="container" ng-controller="DashboardCtrl">
-  <div class="row">
-    <div class="pull-left">
-      <h1>Servers</h1>
-    </div>
-
-    <div class="pull-right">
-      <a class="btn btn-success" ng-href="/dashboard/create">Create API</a>
-    </div>
-  </div>
-
+  
+  <div class="container">
+    <h2>
+      Servers
+      <a class="btn btn-success pull-right" ng-href="/dashboard/create">Create New Server</a>
+    </h2>
   <div class="row">
     <div class="col-sm-12">
-      <table class="table table-striped">
-        <tr>
-          <th>Name</th>
-          <th>Status</th>
+      <table class="table">
+        <tr class="resource">
+          <th class="name">Name</th>
+          <th class="status">Status</th>
           <!--<th>ID</th>-->
-          <th>Port</th>
-          <th>API Endpoints</th>
-          <th>Actions</th>
+          <th class="port">Port</th>
+          <th class="endpoints">API Endpoints</th>
+          <th class="actions">Actions</th>
         </tr>
 
         <!-- list servers -->
         <tr ng-repeat="server in servers">
-          <td><a class="" ng-href="/manager/{{server.name}}/{{server._id}}">{{server.name}}</a></td>
+          <td>{{server.name}}</td>
           <td>
             <span ng-show="server.status.port" class="on">Running</span>
             <span ng-hide="server.status.port" class="off">Stopped</span>
@@ -41,11 +35,14 @@
           <td>{{server.status.port}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
           <td>
-            <a class="glyphicon glyphicon-off start" ng-click="toggleServer(server)" href=""></a>
-            <a class="glyphicon glyphicon-trash trash" ng-click="deleteServer(server)" href=""></a>
+            <h4>
+              <a class="btn-sm btn-info glyphicon glyphicon-off action" ng-show="server.status.port" ng-click="toggleServer(server)" href=""></a>
+              <a class="btn-sm btn-info glyphicon glyphicon-off action" ng-hide="server.status.port" ng-click="toggleServer(server)" href=""></a>
+              <a class="btn-sm btn-primary glyphicon glyphicon-pencil action" ng-href="/manager/{{server.name}}/{{server._id}}"></a>
+              <a class="btn-sm btn-danger glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
+            </h4>
           </td>
         </tr>
-
       </table>
     </div>
   </div>
