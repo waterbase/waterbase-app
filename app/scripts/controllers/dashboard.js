@@ -2,7 +2,7 @@
 
 angular.module('waterbaseApp')
   .controller('DashboardCtrl', function($scope, $http, $route, ServerService) {
-    
+
     $scope.getServers = function() {
       ServerService.getServers().success(function(servers) {
         $scope.servers = servers;
