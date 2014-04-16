@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('waterbaseApp')
+
   .controller('ManagerCtrl', function ($scope,databaseServices,$timeout,$routeParams) {
 
     $scope.currentCollection = undefined;
@@ -57,4 +58,3 @@ angular.module('waterbaseApp')
       return databaseServices.updateDocument($scope.currentDatabase, $scope.currentCollection,doc,id);
     }
   });
-

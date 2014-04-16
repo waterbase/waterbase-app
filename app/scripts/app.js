@@ -39,7 +39,8 @@ angular.module('waterbaseApp', [
       })
       .when('/manager/:server/:id', {
         templateUrl: 'partials/manager',
-        controller: 'ManagerCtrl'
+        controller: 'ManagerCtrl',
+        authenticate: true
       })
       .otherwise({
         redirectTo: '/'
