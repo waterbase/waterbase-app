@@ -22,6 +22,9 @@ angular.module('waterbaseApp')
         $scope.currentDocuments = documents;
           // Retrieve schema keys to setup collection keys for table
           databaseServices.getResources($scope.currentDatabaseId, function(resources) {
+            for (var key in resources) {
+              resources[pluralize(key)] = resources[key];
+            }
             var schema = resources[$scope.currentCollection].attributes;
             schema['_id'] = '';
             $scope.collectionKeys = Object.keys(schema).sort();
