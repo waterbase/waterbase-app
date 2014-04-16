@@ -25,7 +25,7 @@
               <th> actions </th>
             </tr>
 
-            <tr ng-repeat="document in collectionData track by $index"   ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
+            <tr ng-repeat="document in currentDocuments track by $index"  ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
 
               <td style='width:20%;height:60px' ng-repeat="(key, value) in document" >
                 <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"  e-required >

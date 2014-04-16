@@ -32,7 +32,7 @@
 
         <!-- list servers -->
         <tr ng-repeat="server in servers">
-          <td><a class="" ng-href="/manager/{{server.name}}">{{server.name}}</a></td>
+          <td><a class="" ng-href="/manager/{{server.name}}/{{server._id}}">{{server.name}}</a></td>
           <td>
             <span ng-show="server.status.port" class="on">Running</span>
             <span ng-hide="server.status.port" class="off">Stopped</span>
