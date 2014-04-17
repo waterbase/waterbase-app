@@ -32,31 +32,31 @@ angular.module('waterbaseApp')
     });
 
     $scope.displayCollection = function(collection) {
-      $scope.currentCollection = collection || $scope.currentCollection;
+      $scope.currentCollection = collection;
       databaseServices.getDocuments($scope.currentDatabase, $scope.currentCollection, function(documents) {
         $scope.currentDocuments = documents;
-        console.log(collection);
-        console.log($scope.collections);
         $scope.currentAttributes = $scope.collections[collection];
+        console.log('current attributes: ', $scope.currentAttributes);
       });
     };
 
     $scope.addDocument = function() {
       // create new blank document in database
       var blankDoc = {};
-      _.each($scope.collectionKeys, function(key) {
+      _.each($scope.currentAttributes, function(key) {
         if (key !== '_id') {
           blankDoc[key] = '';
         }
       });
+      console.log('blankDoc: ', blankDoc);
       databaseServices.createDocument($scope.currentDatabase, $scope.currentCollection, blankDoc);
-      $scope.displayCollection();
+      $scope.displayCollection($scope.currentCollection);
     };
     $scope.deleteDocument = function(doc) {
       $timeout(function() {
         var id = doc._id
         databaseServices.deleteDocument($scope.currentDatabase, $scope.currentCollection, id);
-        $scope.displayCollection();
+        $scope.displayCollection($scope.currentCollection);
       },500);
     };
     $scope.saveDocument = function(value, key, doc) {
