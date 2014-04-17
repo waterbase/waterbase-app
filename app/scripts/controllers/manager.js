@@ -12,23 +12,33 @@ angular.module('waterbaseApp')
     $scope.collectionKeys;
     $scope.temp = {};
 
-    databaseServices.getListOfCollections($scope.currentDatabase,function(collections) {
-      $scope.collections = collections;
+    // set collection tabs using resources and attribute headers using schema
+    databaseServices.getResources($scope.currentDatabaseId, function(resources) {
+      // change keys to plural
+      for (var key in resources) {
+        if (pluralize(key) !== key) {
+          resources[pluralize(key)] = _.cloneDeep(resources[key]);
+          // delete original key
+          delete resources[key];
+        }
+      }
+      // set a default collection
+      var keys = Object.keys(resources);
+      $scope.currentCollection = keys[0];
+      //
+      var schema = resources[$scope.currentCollection].attributes;
+      $scope.collectionKeys = Object.keys(schema).sort();
+      $scope.collectionKeys.unshift('_id');
+      schema['_id'] = '';
+      $scope.collections = keys;
     });
 
     $scope.displayCollection = function(collection) {
       $scope.currentCollection = collection || $scope.currentCollection;
       databaseServices.getDocuments($scope.currentDatabase, $scope.currentCollection, function(documents) {
         $scope.currentDocuments = documents;
-          // Retrieve schema keys to setup collection keys for table
-          databaseServices.getResources($scope.currentDatabaseId, function(resources) {
-            for (var key in resources) {
-              resources[pluralize(key)] = resources[key];
-            }
-            var schema = resources[$scope.currentCollection].attributes;
-            schema['_id'] = '';
-            $scope.collectionKeys = Object.keys(schema).sort();
-          });
+        $scope.collectionKeys = Object.keys(documents[0]);
+        console.log($scope.collectionKeys);
       });
     };
 
