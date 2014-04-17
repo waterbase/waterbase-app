@@ -3,13 +3,13 @@
 <div class="row">
   <header>
     <div class="container">
-      <h1>Database Manager</h1>
+      <h2>Database Manager</h2>
     </div>
   </header>
 </div>
 
 <div class="container" ng-controller="ManagerCtrl">
-    <h2 >{{ currentDatabase }} database</h2>
+    <h2>{{ currentDatabase }} database</h2>
     </br>
     <tabset>
       <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-init='displayCollection(collections[0])' ng-click="currentCollection === collection ? false : displayCollection(collection)"></tab>
