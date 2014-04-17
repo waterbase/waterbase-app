@@ -8,8 +8,8 @@ angular.module('waterbaseApp')
     $scope.currentDatabase =  $routeParams.server;
     $scope.currentDatabaseId = $routeParams.id;
     $scope.currentDocuments;
-    $scope.collections;
     $scope.currentAttributes;
+    $scope.collections;
     $scope.temp = {};
 
     // set collection tabs using resources and attribute headers using schema
@@ -48,7 +48,6 @@ angular.module('waterbaseApp')
           blankDoc[key] = '';
         }
       });
-      console.log('blankDoc: ', blankDoc);
       databaseServices.createDocument($scope.currentDatabase, $scope.currentCollection, blankDoc);
       $scope.displayCollection($scope.currentCollection);
     };

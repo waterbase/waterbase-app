@@ -19,15 +19,16 @@
     </br>
       <div class="row">
         <div class="col-sm-12">
-          <table class="table table-striped">
+          <table class="table">
             <tr>
               <th ng-repeat="attribute in currentAttributes">{{attribute}}</th>
               <th> actions </th>
             </tr>
 
-            <tr ng-repeat="document in currentDocuments track by $index"  ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
-              <td style='width:20%;height:60px' ng-repeat="(key, value) in document" >
-                <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"  e-required >
+
+            <tr ng-repeat="document in currentDocuments track by $index"  ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;" class="document">
+              <td style='width:20%;height:60px' ng-repeat="(key, value) in document"  >
+                <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"   e-required >
                 {{ value || 'empty' }}
                 </span>
 
@@ -42,8 +43,8 @@
                 </form>
 
                 <div class="buttons" ng-show="!rowform.$visible">
-                  <button class="btn btn-primary glyphicon glyphicon-pencil" ng-click="rowform.$show()" ng-show='showEdit'></button>
-                  <button class="btn btn-danger glyphicon glyphicon-trash" ng-show='showEdit' ng-click="animate=true; deleteDocument(document)"></button>
+                  <span class="glyphicon glyphicon-pencil" ng-click="rowform.$show()" ng-show='showEdit'></span>
+                  <span class="glyphicon glyphicon-trash" ng-show='showEdit' ng-click="animate=true; deleteDocument(document)"></span>
                 </div>
               </td>
             </tr>

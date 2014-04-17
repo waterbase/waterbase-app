@@ -57,6 +57,8 @@ header > h1 {
 /* Stick Footer */
 body, html {
   height: 100%;
+  background-color: #2a3754;
+  color: white;
 }
 
 .wrapper {
@@ -114,8 +116,7 @@ footer > div {
 
 /*Database Manager*/
 
-.document :hover {
-  background-color: yellow;
-  opacity: 50%;
+.document:hover {
+  border-left: #b0f173 solid 4px;
 }
 
