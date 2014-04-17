@@ -9,7 +9,7 @@ angular.module('waterbaseApp')
     $scope.currentDatabaseId = $routeParams.id;
     $scope.currentDocuments;
     $scope.collections;
-    $scope.collectionKeys;
+    $scope.currentAttributes;
     $scope.temp = {};
 
     // set collection tabs using resources and attribute headers using schema
@@ -20,25 +20,24 @@ angular.module('waterbaseApp')
           resources[pluralize(key)] = _.cloneDeep(resources[key]);
           // delete original key
           delete resources[key];
+          // change schema to attributes
         }
       }
-      // set a default collection
-      var keys = Object.keys(resources);
-      $scope.currentCollection = keys[0];
-      //
-      var schema = resources[$scope.currentCollection].attributes;
-      $scope.collectionKeys = Object.keys(schema).sort();
-      $scope.collectionKeys.unshift('_id');
-      schema['_id'] = '';
-      $scope.collections = keys;
+      for (var key in resources) {
+        var schema = resources[pluralize(key)].attributes;
+        resources[key] = Object.keys(schema).sort();
+        resources[key].unshift('_id');
+      }
+      $scope.collections = resources;
     });
 
     $scope.displayCollection = function(collection) {
       $scope.currentCollection = collection || $scope.currentCollection;
       databaseServices.getDocuments($scope.currentDatabase, $scope.currentCollection, function(documents) {
         $scope.currentDocuments = documents;
-        $scope.collectionKeys = Object.keys(documents[0]);
-        console.log($scope.collectionKeys);
+        console.log(collection);
+        console.log($scope.collections);
+        $scope.currentAttributes = $scope.collections[collection];
       });
     };
 

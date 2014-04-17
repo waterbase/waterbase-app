@@ -12,7 +12,7 @@
     <h2 >{{ currentDatabase }} database</h2>
     </br>
     <tabset>
-      <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-init='displayCollection(collections[0])' ng-click="currentCollection === collection ? false : displayCollection(collection)"></tab>
+      <tab ng-repeat="(key, value) in collections" active="collection.active" heading="{{key}}" ng-init='displayCollection(key)' ng-click="currentCollection === key ? false : displayCollection(key)"></tab>
     </tabset>
     <div ng-show='currentCollection'>
     </br>
@@ -21,7 +21,7 @@
         <div class="col-sm-12">
           <table class="table table-striped">
             <tr>
-              <th ng-repeat="key in collectionKeys">{{key}}</th>
+              <th ng-repeat="attribute in currentAttributes">{{attribute}}</th>
               <th> actions </th>
             </tr>
 
