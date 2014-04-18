@@ -28,13 +28,13 @@ angular.module('waterbaseApp')
     };
 
     $scope.toggleServer = function(server){
-      if (server.status.port) {
+      if (server.status.running) {
         ServerService.stopServer(server).success(function() {
-          server.status.port = 0;
+          $scope.getServers();
           console.log('Server stopped');
         });
       } else {
-        server.status.port = 'pending';
+
         ServerService.startServer(server).success(function() {
           $scope.getServers();
           console.log('Server started');

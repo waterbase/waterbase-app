@@ -34,8 +34,8 @@
         <tr ng-repeat="server in servers">
           <td><a class="" ng-href="/manager/{{server.name}}/{{server._id}}">{{server.name}}</a></td>
           <td>
-            <span ng-show="server.status.port" class="on">Running</span>
-            <span ng-hide="server.status.port" class="off">Stopped</span>
+            <span ng-show="server.status.running" class="on">Running</span>
+            <span ng-hide="server.status.running" class="off">Stopped</span>
           </td>
           <!--<td>{{server._id}}</td>-->
           <td>{{server.status.port}}</td>
