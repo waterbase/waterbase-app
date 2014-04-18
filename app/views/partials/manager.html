@@ -3,13 +3,13 @@
 <div class="row">
   <header>
     <div class="container">
-      <h1>Database Manager</h1>
+      <h2>Database Manager</h2>
     </div>
   </header>
 </div>
 
 <div class="container" ng-controller="ManagerCtrl">
-    <h2 >{{ currentDatabase }} database</h2>
+    <h2>{{ currentDatabase }} database</h2>
     </br>
     <tabset>
       <tab ng-repeat="collection in collections" active="collection.active" heading="{{collection}}" ng-init='displayCollection(collections[0])' ng-click="currentCollection === collection ? false : displayCollection(collection)"></tab>
@@ -26,7 +26,6 @@
             </tr>
 
             <tr ng-repeat="document in currentDocuments track by $index"  ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;">
-
               <td style='width:20%;height:60px' ng-repeat="(key, value) in document" >
                 <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"  e-required >
                 {{ value || 'empty' }}

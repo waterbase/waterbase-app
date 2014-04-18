@@ -1,62 +1,56 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-<!-- Header -->
-
-<!-- /Header -->
-
-
 <div ng-controller='NewApiCtrl'>
-  <div class="row">
-    <header>
+  <header>
+    <div class="container">
+      <h2>{{serverName ? serverName : "Create New Server"}}</h2>
+    </div>
+  </header>
 
-      <div class="container">
-      <div>
-        <h1>{{serverName ? serverName : "Create New Server"}}</h1>
-      </div>
-      </div>
-    </header>
-  </div>
   <div class="container">
+    <h2>Server Schema</h2>
     <form class="form" name="form" ng-submit="submitForm()" novalidate>
-          <div class="form-group col-sm-12">
-            <h4>Server Name</h4>
-            <input type='text' class ="form-control" ng-model='serverName' >
+      
+      <div class="col-sm-12 resource">
+        <h4>Server Name</h4>
+        <input type='text' class ="form-control" style="width: 50%; display: inline-block" ng-model='serverName' >
+      </div>
+
+      <div ng-repeat="resource in resources track by $index" class="col-sm-12 resource" style="display: inline-block">
+        <h4>
+          Resource Name
+          <a class="btn-sm btn-primary glyphicon-plus" ng-href="" style="margin-left: 10px; cursor: pointer" ng-click="createNewField()" ng-show="resource === resources[resources.length - 1]"> Add new resource</a>
+          <span class="glyphicon glyphicon-remove remove pull-right" ng-click="removeField(resource)" ng-hide="resource === resources[0]"></span>
+        </h4>
+        <div class="form-inline">
+          <input type='text' class="form-control" style="width: 50%" ng-model='resource.resourceName' >
+        </div>
+        <hr>
+        <h4>Attribute
+          <a class="btn-sm btn-primary glyphicon-plus" ng-href="" style="margin-left: 10px; cursor: pointer" ng-click="createSubField(resource.attributes)"> Add new attribute</a>
+        </h4>
+        <div class="attribute" ng-repeat='(key,value) in resource.attributes track by $index'>
+          <div class="form-inline">
+            <label>Name</label>
+            <input type='text' class="form-control" style="width: 30%" ng-model='value.name' >
+            <label>Type</label>
+            <select class="form-control" ng-model='value.type' >
+              <option selected="selected" value="String">String</option>
+              <option value="Number">Number</option>
+              <option value="Boolean">Boolean</option>
+            </select>
+            <span class="glyphicon glyphicon-remove remove" ng-click="removeSubField(resource.attributes, value)" ng-hide="value === resource.attributes[0]"></span>
           </div>
-          <div ng-repeat='resource in resources track by $index'>
-            <div class="col-sm-6 resource">
-              <h4>Resource Name</h4>
-              <div class="form-inline">
-                <input type='text' class="form-control" ng-model='resource.resourceName' >
-                <button type="button" class="btn btn-success pulse" ng-click='createNewField()'><span class="glyphicon-plus"></span></button>
-                <button type="button" class="btn btn-failure" ng-click='removeField(resource)' ng-hide='resource === resources[0]'><span class="glyphicon-minus"></span></button>
-              </div>
-              </br>
-              <h4>Attribute</h4>
-              <div ng-repeat='(key,value) in resource.attributes track by $index'>
-                <div class="form-inline">
-                  <label>Name</label>
-                  <input type='text' class="form-control" ng-model='value.name' >
-                  <label>Type</label>
-                  <select class="form-control" ng-model='value.type' >
-                    <option selected="selected" value="String">String</option>
-                    <option value="Number">Number</option>
-                    <option value="Boolean">Boolean</option>
-                  </select>
-                  <button type="button" class="btn btn-success pulse" ng-click='createSubField(resource.attributes)'><span class="glyphicon-plus"></span></button>
-                  <button type="button" class="btn btn-failure" ng-click='removeSubField(resource.attributes,value)' ng-hide='value === resource.attributes[0]'><span class="glyphicon-minus"></span></button>
-                </div>
-                </br>
-              </div>
-            </div>
-          </div>
-          </br>
-          </br>
-          </br>
-          </br>
-          <div class="col-sm-12">
-            <button class="btn btn-lg btn-primary" style="width: 100%;"type="submit">Create API</button>
-          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12" style="padding: 0">
+        <button class="btn btn-success" type="submit" style="display: inline-block">Create Server</button>
+        <button class="btn btn-warning" type="button" style="display: inline-block; margin-left: 5px" ng-click="back('/dashboard')">Cancel</button>
+      </div>
+
     </form>
   </div>
 </div>
+
 <!-- /New API Form -->
