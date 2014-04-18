@@ -11,7 +11,9 @@
     "ejs": "~0.8.4",
     "supertest-session": "0.0.1",
     "socket.io": "^0.9.16",
-    "mongodb": "^1.4.0"
+    "mongodb": "^1.4.0",
+    "heroku-client": "^1.2.0",
+    "request": "^2.34.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
