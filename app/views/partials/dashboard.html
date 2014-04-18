@@ -1,20 +1,19 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-<div ng-controller="DashboardCtrl">
+<div ng-controller="DashboardCtrl" class="container">
   <header>
-    <div class="container">
+    <div >
       <h1>Dashboard</h1>
     </div>
   </header>
 
-  <div class="container">
+  <div>
     <h1>
       Servers
-      <a class="btn btn-success pull-right" ng-href="/dashboard/create">Create New Server</a>
     </h1>
   <div class="row">
     <div class="col-sm-12">
-      <table class = "waterTable">
+      <table class="waterTable">
         <tr class="tableHeader">
           <th class="name">Name</th>
           <th class="status">Status</th>
@@ -24,7 +23,7 @@
         </tr>
 
         <!-- list servers -->
-        <tr ng-repeat="server in servers" class="resource">
+        <tr ng-repeat="server in servers" class="resource" ng-init="actions=false" ng-mouseenter="actions=true" ng-mouseleave="actions=false">
           <td>{{server.name}}</td>
           <td>
             <span ng-show="server.status.port" class="on">Running</span>
@@ -33,16 +32,18 @@
           <!--<td>{{server._id}}</td>-->
           <td>{{server.status.port}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
-          <td>
-            <h4>
-              <a class="glyphicon glyphicon-off action" ng-show="server.status.port" ng-click="toggleServer(server)" href=""></a>
-              <a class="btn-sm btn-info glyphicon glyphicon-off action" ng-hide="server.status.port" ng-click="toggleServer(server)" href=""></a>
-              <a class="glyphicon glyphicon-pencil action" ng-href="/manager/{{server.name}}/{{server._id}}"></a>
-              <a class="glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
-            </h4>
+          <td ng-show="actions">
+            <a style="margin-right:10px" class="glyphicon glyphicon-off action" ng-show="server.status.port" ng-click="toggleServer(server)" href=""></a>
+            <a style="margin-right:10px" class="glyphicon glyphicon-off action" ng-hide="server.status.port" ng-click="toggleServer(server)" href=""></a>
+            <a style="margin-right:10px" class="glyphicon glyphicon-pencil action" ng-href="/manager/{{server.name}}/{{server._id}}"></a>
+            <a style="margin-right:10px" class="glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
+          </td>
+          <td ng-hide="actions">
+            &nbsp;
           </td>
         </tr>
       </table>
+        <a style="margin-top:30px" class="pull-left"  ng-href="/dashboard/create"><span class="glyphicon glyphicon-tasks" style="margin-right: 10px; vertical-align: text-bottom"></span>Create New Server</a>
     </div>
   </div>
 </div>
