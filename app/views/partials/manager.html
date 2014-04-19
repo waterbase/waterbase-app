@@ -1,56 +1,51 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-<div class="row">
+<div ng-controller="ManagerCtrl" class="container">
   <header>
-    <div class="container">
-      <h2>Database Manager</h2>
+    <div>
+      <h1>Database Manager</h1>
     </div>
   </header>
-</div>
 
-<div class="container" ng-controller="ManagerCtrl">
-    <h2>{{ currentDatabase }} database</h2>
-    </br>
-    <tabset>
-      <tab ng-repeat="(key, value) in collections" active="collection.active" heading="{{key}}" ng-init='displayCollection(key)' ng-click="currentCollection === key ? false : displayCollection(key)"></tab>
-    </tabset>
-    <div ng-show='currentCollection'>
-    </br>
-    </br>
-      <div class="row">
-        <div class="col-sm-12">
-          <table class="table">
-            <tr>
-              <th ng-repeat="attribute in currentAttributes">{{attribute}}</th>
-              <th> actions </th>
-            </tr>
+  <h1>{{ currentDatabase }} database</h1>
+  <tabset>
+    <tab ng-repeat="(key, value) in collections" active="collection.active" heading="{{key}}" ng-init='displayCollection(key)' ng-click="currentCollection === key ? false : displayCollection(key)"></tab>
+  </tabset>
+  <div ng-show='currentCollection'>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="waterTable">
+          <tr class="tableHeader">
+            <th ng-repeat="attribute in currentAttributes">{{attribute}}</th>
+            <th> actions </th>
+          </tr>
 
 
-            <tr ng-repeat="document in currentDocuments track by $index"  ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;" class="document">
-              <td style='width:20%;height:60px' ng-repeat="(key, value) in document"  >
-                <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"   e-required >
-                {{ value || 'empty' }}
-                </span>
+          <tr ng-repeat="document in currentDocuments track by $index"  ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;" class="document">
+            <td style='width:20%;height:60px' ng-repeat="(key, value) in document"  >
+              <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"   e-required >
+              {{ value || 'empty' }}
+              </span>
 
-              </td>
-              <td style='width:20%;height:60px'>
-                <form editable-form name="rowform" onbeforesave="updateDocument()" ng-show="rowform.$visible" class="form-buttons form-inline">
+            </td>
+            <td style='width:20%;height:60px'>
+              <form editable-form name="rowform" onbeforesave="updateDocument()" ng-show="rowform.$visible">
 
-                  <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success glyphicon glyphicon-floppy-save">
-                  </button>
-                  <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn glyphicon glyphicon-ban-circle"></button>
+                <button type="submit" ng-disabled="rowform.$waiting" class="glyphicon glyphicon-ok action">
+                </button>
+                <span ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="glyphicon glyphicon-ban-circle  action"></span>
 
-                </form>
+              </form>
 
-                <div class="buttons" ng-show="!rowform.$visible">
-                  <span class="glyphicon glyphicon-pencil" ng-click="rowform.$show()" ng-show='showEdit'></span>
-                  <span class="glyphicon glyphicon-trash" ng-show='showEdit' ng-click="animate=true; deleteDocument(document)"></span>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <button type='button' class='btn btn-success glyphicon glyphicon-plus' ng-click="addDocument()"></button>
-        </div>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <span class="glyphicon glyphicon-pencil action" ng-click="rowform.$show()" ng-show='showEdit'></span>
+                <span class="glyphicon glyphicon-trash action" ng-show='showEdit' ng-click="animate=true; deleteDocument(document)"></span>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <a style="margin-top:30px" class="pull-left"  ng-click="addDocument()"><span class="glyphicon glyphicon-plus" style="margin-right: 10px; vertical-align: text-bottom; display: inline-block"></span>Add new document</a>
       </div>
     </div>
+  </div>
 </div>

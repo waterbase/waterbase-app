@@ -7,10 +7,7 @@
     </div>
   </header>
 
-  <div>
-    <h1>
-      Servers
-    </h1>
+  <h1>Servers</h1>
   <div class="row">
     <div class="col-sm-12">
       <table class="waterTable">
@@ -23,7 +20,7 @@
         </tr>
 
         <!-- list servers -->
-        <tr ng-repeat="server in servers" class="resource" ng-init="actions=false" ng-mouseenter="actions=true" ng-mouseleave="actions=false">
+        <tr ng-repeat="server in servers" class="server" ng-init="actions=false" ng-mouseenter="actions=true" ng-mouseleave="actions=false">
           <td>{{server.name}}</td>
           <td>
             <span ng-show="server.status.port" class="on">Running</span>
@@ -33,10 +30,10 @@
           <td>{{server.status.port}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
           <td ng-show="actions">
-            <a style="margin-right:10px" class="glyphicon glyphicon-off action" ng-show="server.status.port" ng-click="toggleServer(server)" href=""></a>
-            <a style="margin-right:10px" class="glyphicon glyphicon-off action" ng-hide="server.status.port" ng-click="toggleServer(server)" href=""></a>
-            <a style="margin-right:10px" class="glyphicon glyphicon-pencil action" ng-href="/manager/{{server.name}}/{{server._id}}"></a>
-            <a style="margin-right:10px" class="glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
+            <a class="glyphicon glyphicon-off action" ng-show="server.status.port" ng-click="toggleServer(server)" href=""></a>
+            <a class="glyphicon glyphicon-off action" ng-hide="server.status.port" ng-click="toggleServer(server)" href=""></a>
+            <a class="glyphicon glyphicon-pencil action" ng-href="/manager/{{server.name}}/{{server._id}}"></a>
+            <a class="glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
           </td>
           <td ng-hide="actions">
             &nbsp;

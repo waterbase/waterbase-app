@@ -26,6 +26,7 @@ body, html {
 .navbar {
   background-color: #0c2333;
   font-size: 17px;
+  border-bottom: 1px solid #03314d;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -69,7 +70,7 @@ header {
   color: #7f8c8d;
 }
 
-header  h1 {
+header h1 {
   font-size: 25px;
   line-height: 50px;
 }
@@ -91,6 +92,8 @@ h1 {
   font-size: 20px;
   font-weight: thin;
 }
+
+
 
 /* Home Page */
 
@@ -123,22 +126,17 @@ h1 {
   height: 40px;
 }
 
-.resource:hover {
+.server:hover {
   border-left: 3px solid #b0f173;
 }
 
-.resource {
+.server {
   border-left: 3px solid #0c2333;
 }
 
-.resource td {
+.server td {
   padding: 20px 10px 20px 10px;
   vertical-align: text-top;
-}
-
-
-.glowText {
-
 }
 
 /* Dashboard */
@@ -147,11 +145,21 @@ h1 {
   width: 100%;
 }
 
+.waterTable input {
+  background: rgba(44, 118, 147, 0.5);
+  padding: 2px 10px;
+  border: none;
+}
+
+.waterTable input:focus {
+  outline: none;
+}
+
 
 @-webkit-keyframes digg {
-  from { color: #749a02; text-shadow: 0 0 0px rgba(192,248,39,0.8)}
-  50% { color: #91bd09; text-shadow: 0 0 4px rgba(192,248,39,1)}
-  to { color: #749a02; text-shadow: 0 0 0px rgba(192,248,39,0.8)}
+  from { color: #b0f173; text-shadow: none}
+  50% { color: #b0f173; text-shadow: 0 0 4px rgba(192,248,39,0.6)}
+  to { color: #b0f173; text-shadow: none}
 }
 
 .on {
@@ -188,8 +196,16 @@ h1 {
 .action {
   vertical-align: text-top;
   display: inline-block;
-  margin: 0;
+  margin-right:10px;
+  border: none;
+  background: transparent;
+
 }
+
+.action:hover {
+  cursor: pointer;
+}
+
 
 /*Database Manager*/
 
@@ -213,14 +229,36 @@ hr {
   margin-left: 10px;
   vertical-align: middle;
   color: #a4a4a4;
+  font-size: 15px;
+  opacity: 0.2;
 }
 
 .remove:hover {
   color: #6e6e6e;
+  opacity: 1;
 }
 
 label, input {
   margin-right: 10px;
 }
 
+.createServer input {
+  color: #e8e8e8;
+  border-bottom: 1;
+  background-color: transparent;
+  outline: none;
+}
 
+select.dim {
+  background-color: gray;
+}
+
+/* Create Server */
+
+.resource {
+  border-left: 3px solid #b0f173;
+  margin: 10px;
+  border: 2px solid #03314d;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+}
