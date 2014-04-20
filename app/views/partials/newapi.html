@@ -1,45 +1,40 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-<div ng-controller='NewApiCtrl'>
+<div ng-controller="NewApiCtrl" class="container">
   <header>
     <div class="container">
-      <h2>{{serverName ? serverName : "Create New Server"}}</h2>
+      <h1>Create New Server</h1>
     </div>
   </header>
 
-  <div class="container">
-    <h2>Server Schema</h2>
+  <div class="createServer">
     <form class="form" name="form" ng-submit="submitForm()" novalidate>
-      
-      <div class="col-sm-12 resource">
+
+      <div class="col-sm-12">
         <h4>Server Name</h4>
         <input type='text' class ="form-control" style="width: 50%; display: inline-block" ng-model='serverName' >
       </div>
 
-      <div ng-repeat="resource in resources track by $index" class="col-sm-12 resource" style="display: inline-block">
-        <h4>
-          Resource Name
-          <a class="btn-sm btn-primary glyphicon-plus" ng-href="" style="margin-left: 10px; cursor: pointer" ng-click="createNewField()" ng-show="resource === resources[resources.length - 1]"> Add new resource</a>
-          <span class="glyphicon glyphicon-remove remove pull-right" ng-click="removeField(resource)" ng-hide="resource === resources[0]"></span>
+      <div ng-repeat="resource in resources track by $index" class="col-sm-7 resource" style="display: inline-block">
+        <h4>Resource Name<a class="glyphicon glyphicon-plus" ng-href="" style="vertical-align: inherit; font-size:13px; margin-left: 10px; cursor: pointer" ng-click="createNewField()" ng-show="resource === resources[resources.length - 1]"></a>
+          <a class="glyphicon glyphicon-remove remove pull-right" ng-click="removeField(resource)" ng-hide="resource === resources[0]"></a>
         </h4>
         <div class="form-inline">
           <input type='text' class="form-control" style="width: 50%" ng-model='resource.resourceName' >
         </div>
-        <hr>
-        <h4>Attribute
-          <a class="btn-sm btn-primary glyphicon-plus" ng-href="" style="margin-left: 10px; cursor: pointer" ng-click="createSubField(resource.attributes)"> Add new attribute</a>
-        </h4>
+        <h4>Attribute<a class="glyphicon glyphicon-plus" ng-href="" style="vertical-align: inherit; font-size:13px; margin-left: 10px; cursor: pointer" ng-click="createSubField(resource.attributes)"></a></h4>
+
         <div class="attribute" ng-repeat='(key,value) in resource.attributes track by $index'>
           <div class="form-inline">
             <label>Name</label>
             <input type='text' class="form-control" style="width: 30%" ng-model='value.name' >
             <label>Type</label>
-            <select class="form-control" ng-model='value.type' >
+            <select class="form-control dim" ng-model='value.type' >
               <option selected="selected" value="String">String</option>
               <option value="Number">Number</option>
               <option value="Boolean">Boolean</option>
             </select>
-            <span class="glyphicon glyphicon-remove remove" ng-click="removeSubField(resource.attributes, value)" ng-hide="value === resource.attributes[0]"></span>
+            <a class="glyphicon glyphicon-remove remove" ng-click="removeSubField(resource.attributes, value)" ng-hide="value === resource.attributes[0]"></a>
           </div>
         </div>
       </div>
