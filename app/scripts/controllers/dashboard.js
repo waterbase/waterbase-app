@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('waterbaseApp')
-  .controller('DashboardCtrl', function($scope, $http, $route, ServerService) {
+  .controller('DashboardCtrl', function($scope, $http, $route, $q, ServerService) {
 
     $scope.getServers = function() {
       ServerService.getServers().success(function(servers) {
         $scope.servers = servers;
+        console.log("dsfd", $scope.servers);
         $scope.servers.forEach(function (server) {
           Object.keys(server.resources).forEach(function(resource) {
             server.resources[resource].description = '/' + resource + ': ';
@@ -14,8 +15,6 @@ angular.module('waterbaseApp')
         });
       });
     };
-
-    $scope.getServers();
 
     // ServerService
     $scope.deleteServer = function(server){
@@ -34,11 +33,12 @@ angular.module('waterbaseApp')
           console.log('Server stopped');
         });
       } else {
-        server.status.port = 'pending';
+        server.status.port = 'Pending...';
         ServerService.startServer(server).success(function() {
           $scope.getServers();
-          console.log('Server started');
         });
       }
     };
+
+    $scope.getServers();
   });

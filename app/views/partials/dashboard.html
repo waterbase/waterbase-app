@@ -2,18 +2,19 @@
 
 <div ng-controller="DashboardCtrl" class="container">
   <header>
-    <div >
+    <div class="container">
       <h1>Dashboard</h1>
     </div>
   </header>
-  <h1>Servers</h1>
-  <div class="row">
+
+  <div class="col-sm-12">
+    <h4>Servers</h4>
+  </div> 
     <div class="col-sm-12">
       <table class="waterTable">
         <tr class="tableHeader">
           <th class="name">Name</th>
           <th class="status">Status</th>
-          <th class="port">Port</th>
           <th class="endpoints">API Endpoints</th>
           <th class="actions">Actions</th>
         </tr>
@@ -25,8 +26,6 @@
             <span ng-show="server.status.port" class="on">Running</span>
             <span ng-hide="server.status.port" class="off">Stopped</span>
           </td>
-          <!--<td>{{server._id}}</td>-->
-          <td>{{server.status.port}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
           <td ng-show="actions">
             <a class="glyphicon glyphicon-off action" ng-show="server.status.port" ng-click="toggleServer(server)" href=""></a>
