@@ -1,4 +1,5 @@
 body, html {
+  margin-top: -50px;
   margin: 0 auto;
   height: 100%;
   background: -webkit-linear-gradient(#0c2333, #04111a);
@@ -15,7 +16,11 @@ body, html {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto 6em;
+  margin: 0 auto -3em;
+}
+
+.push {
+  height: 3em;
 }
 
 .container a {
@@ -79,9 +84,6 @@ header h1 {
 }
 
 footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
   height: 3em;
   background-color: #000;
   opacity:0.2;
@@ -116,7 +118,7 @@ input:active, input:focus {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
+  height: 90vh;
 }
 
 .homeSlogan {

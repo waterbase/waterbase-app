@@ -32,9 +32,11 @@
 
     <!-- Add your site or application content here -->
     <div class="wrapper">
+        <div ng-include="'partials/navbar'"></div>
         <div ng-view=""></div>
         <div class="push"></div>
     </div>
+    <div ng-include="'partials/footer'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -93,6 +95,5 @@
 
         <script src="scripts/directives/mongooseError.js"></script>
         <!-- endbuild -->
-    <div ng-include="'partials/footer'"></div>
 </body>
 </html>
