@@ -6,12 +6,12 @@
       </li>
       <li ng-show="currentUser" ng-class="{active: isActive('/dashboard')}"><a href="/dashboard">Dashboard</a></li>
       <!-- <li ng-show="currentUser" ng-class="{active: isActive('/manager')}"><a href="/manager">DB Manager</a></li> -->
-      <li ng-show="currentUser" ng-class="{active: isActive('/settings')}"><a href="/settings">Settings</a></li>
+      <li ng-show="currentUser" ng-class="{active: isActive('/settings')}"><a href="/settings">Account</a></li>
 
       <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
       <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
       <li ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
     </ul>
-    <img src='./images/waterbaselogo.png' style="width: 2.2em; padding: 9px 12px 0px 0px" class ="pull-left"><span class="navbar-brand">Waterbase</span>
+    <span class="navbar-brand" style="display: inline-block"><img src='./images/waterbase-logo.png' style="height: 1em; vertical-align: middle; display: inline-block;" class ="pull-left">aterbase</span>
   </div>
 </nav>
