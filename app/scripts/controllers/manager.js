@@ -52,11 +52,9 @@ angular.module('waterbaseApp')
       $scope.displayCollection($scope.currentCollection);
     };
     $scope.deleteDocument = function(doc) {
-      $timeout(function() {
         var id = doc._id
         databaseServices.deleteDocument($scope.currentDatabase, $scope.currentCollection, id);
         $scope.displayCollection($scope.currentCollection);
-      },500);
     };
     $scope.saveDocument = function(value, key, doc) {
       // saves all values for a single document in a temp
@@ -67,5 +65,11 @@ angular.module('waterbaseApp')
       var doc = _.omit($scope.temp, '_id');
       $scope.temp = {}; // resets temp for next document
       return databaseServices.updateDocument($scope.currentDatabase, $scope.currentCollection,doc,id);
+    }
+    $scope.confirmDelete = function() {
+      var prompt = confirm('Are you sure you want to delete this resource?')
+      if (prompt) {
+        return true;
+      }
     }
   });
