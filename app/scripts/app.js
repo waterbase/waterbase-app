@@ -37,7 +37,7 @@ angular.module('waterbaseApp', [
         controller: 'NewApiCtrl',
         authenticate: true
       })
-      .when('/manager/:server/:id', {
+      .when('/manager/:id/', {
         templateUrl: 'partials/manager',
         controller: 'ManagerCtrl',
         authenticate: true

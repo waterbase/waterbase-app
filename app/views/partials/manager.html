@@ -22,9 +22,8 @@
               <th> actions </th>
             </tr>
 
-
             <tr ng-repeat="document in currentDocuments"  ng-mouseenter="showEdit=true;" ng-mouseleave="showEdit=false;" class="document">
-              <td style='width:20%;height:60px' ng-repeat="(key, value) in document">
+              <td style='width:20%;height:60px' ng-repeat="(key, value) in document" ng-hide="key==='__v'">
                 <span editable-text="document[key]" ng-click="rowform.$show()" e-name="value" e-form="rowform" onbeforesave="saveDocument($data, key, document)"   e-required >
                 {{ value || 'empty' }}
                 </span>

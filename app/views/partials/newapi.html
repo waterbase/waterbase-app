@@ -7,43 +7,40 @@
 
   <div class="createServer">
     <form class="form" name="form" ng-submit="submitForm()" novalidate>
-
       <div class="col-sm-12">
         <h4>Server Name</h4>
         <input type='text' class ="form-control" style="width: 50%; display: inline-block" ng-model='serverName' >
       </div>
-        </div>
 
-        <div ng-repeat="resource in resources track by $index" class="col-sm-7 resource" style="display: inline-block">
-          <h4>Resource Name<a class="glyphicon glyphicon-plus" style="vertical-align: inherit; font-size:13px; margin-left: 10px; cursor: pointer" ng-click="createNewField()" ng-show="resource === resources[resources.length - 1]"></a>
-            <a class="glyphicon glyphicon-remove remove pull-right" ng-click="removeField(resource)" ng-hide="resource === resources[0]"></a>
-          </h4>
+      <div ng-repeat="resource in resources track by $index" class="col-sm-7 resource" style="display: inline-block">
+        <h4>Resource Name<a class="glyphicon glyphicon-plus" style="vertical-align: inherit; font-size:13px; margin-left: 10px; cursor: pointer" ng-click="createNewField()" ng-show="resource === resources[resources.length - 1]"></a>
+          <a class="glyphicon glyphicon-remove remove pull-right" ng-click="removeField(resource)" ng-hide="resource === resources[0]"></a>
+        </h4>
+        <div class="form-inline">
+          <input type='text' class="form-control" style="width: 50%" ng-model='resource.resourceName' >
+        </div>
+        <h4>Attribute<a class="glyphicon glyphicon-plus" ng-href="" style="vertical-align: inherit; font-size:13px; margin-left: 10px; cursor: pointer" ng-click="createSubField(resource.attributes)"></a></h4>
+
+        <div class="attribute" ng-repeat='(key,value) in resource.attributes track by $index'>
           <div class="form-inline">
-            <input type='text' class="form-control" style="width: 50%" ng-model='resource.resourceName' >
-          </div>
-          <h4>Attribute<a class="glyphicon glyphicon-plus" ng-href="" style="vertical-align: inherit; font-size:13px; margin-left: 10px; cursor: pointer" ng-click="createSubField(resource.attributes)"></a></h4>
-
-          <div class="attribute" ng-repeat='(key,value) in resource.attributes track by $index'>
-            <div class="form-inline">
-              <label>Name</label>
-              <input type='text' class="form-control" style="width: 30%" ng-model='value.name' >
-              <label>Type</label>
-              <select class="form-control dim" ng-model='value.type' >
-                <option selected="selected" value="String">String</option>
-                <option value="Number">Number</option>
-                <option value="Boolean">Boolean</option>
-              </select>
-              <a class="glyphicon glyphicon-remove remove" ng-click="removeSubField(resource.attributes, value)" ng-hide="value === resource.attributes[0]"></a>
-            </div>
+            <label>Name</label>
+            <input type='text' class="form-control" style="width: 30%" ng-model='value.name' >
+            <label>Type</label>
+            <select class="form-control dim" ng-model='value.type' >
+              <option selected="selected" value="String">String</option>
+              <option value="Number">Number</option>
+              <option value="Boolean">Boolean</option>
+            </select>
+            <a class="glyphicon glyphicon-remove remove" ng-click="removeSubField(resource.attributes, value)" ng-hide="value === resource.attributes[0]"></a>
           </div>
         </div>
+      </div>
 
-        <div class="col-sm-12">
-          <button class="btn btn-success" type="submit" style="display: inline-block">Create Server</button>
-          <button class="btn btn-warning" type="button" style="display: inline-block; margin-left: 5px" ng-click="back('/dashboard')">Cancel</button>
-        </div>
+      <div class="col-sm-12">
+        <button class="btn btn-success" type="submit" style="display: inline-block">Create Server</button>
+        <button class="btn btn-warning" type="button" style="display: inline-block; margin-left: 5px" ng-click="back('/dashboard')">Cancel</button>
+      </div>
 
-      </form>
-    </div>
+    </form>
   </div>
 </div>

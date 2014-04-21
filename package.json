@@ -12,7 +12,8 @@
     "socket.io": "^0.9.16",
     "mongodb": "^1.4.0",
     "heroku-client": "^1.2.0",
-    "request": "^2.34.0"
+    "request": "^2.34.0",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

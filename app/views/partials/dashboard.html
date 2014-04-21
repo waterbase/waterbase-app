@@ -28,9 +28,8 @@
           <td>{{server.heroku.web_url}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
           <td ng-show="actions">
-            <a class="glyphicon glyphicon-off action" ng-show="server.status.port" ng-click="toggleServer(server)" href=""></a>
-            <a class="glyphicon glyphicon-off action" ng-hide="server.status.port" ng-click="toggleServer(server)" href=""></a>
-            <a class="glyphicon glyphicon-pencil action" ng-href="/manager/{{server.name}}/{{server._id}}"></a>
+            <a class="glyphicon glyphicon-off action" ng-click="toggleServer(server)" href=""></a>
+            <a class="glyphicon glyphicon-pencil action" ng-href="/manager/{{server._id}}"></a>
             <a class="glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
           </td>
           <td ng-hide="actions">
