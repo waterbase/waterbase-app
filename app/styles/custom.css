@@ -15,7 +15,7 @@ body, html {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto 6em;
+  margin: 0 auto;
 }
 
 .container a {
@@ -84,7 +84,7 @@ footer {
   bottom: 0;
   height: 3em;
   background-color: #000;
-  opacity:0.2;
+  opacity:0.3;
   font-size: 1em;
   font-weight: 400;
   padding: 1em;
@@ -98,6 +98,12 @@ h1 {
 
 .btn, input {
   background-color: transparent !important;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+  /*border: none !important;*/
+  outline: none !important;
 }
 
 input {
@@ -122,8 +128,8 @@ input:active, input:focus {
 .homeSlogan {
   text-align: center;
   font-size: 1.2em;
-  font-weight: 400;
-  opacity: 0.7;
+  opacity: 0.8;
+  text-shadow: 0px 0px 10px black;
 }
 
 .homeLogo {
@@ -168,7 +174,7 @@ input:active, input:focus {
 }
 
 .server td {
-  padding: 20px 10px 20px 10px;
+  padding: 10px;
   vertical-align: text-top;
 }
 
@@ -314,8 +320,6 @@ hr {
   opacity: 1;
 }
 
-
-
 .addDocument:hover {
   cursor: pointer;
 }
@@ -328,19 +332,25 @@ label, input {
   font-weight: 400;
 }
 
-
-select.dim {
-  background-color: gray;
+select {
+  -webkit-appearance: menulist;
+  box-sizing: border-box;
+  align-items: center;
+  border: 1px solid;
+  -webkit-rtl-ordering: logical;
+  color: black;
+  cursor: default;
 }
+
 
 /* Create Server */
 
 .resource {
-  border-left: 3px solid #b0f173;
-  margin: 10px;
+  /*border-left: 3px solid #b0f173;*/
+  margin: 10px 15px;
   border: 1px solid #03314d;
   padding: 5px 10px 5px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .createServer input {
