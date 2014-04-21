@@ -1,145 +1,299 @@
-.navbar {
-  background-color: #2ecc71;
-  border-bottom: solid #27ae60;
-  font-size: 17px;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: #ecf0f1;
-}
-
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: #ecf0f1;
-  background-color: #2ecc71;
-}
-
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-  font-weight: bold;
-  background-color: #2ecc71;
-  color: #ecf0f1;
-}
-
-.navbar-default .navbar-brand {
-  color: white;
-  font-size: 25px;
-}
-
-.navbar-brand:hover, .navbar-brand:focus {
-  color: #5e5e5e;
-  background-color: transparent;
-}
-
-header {
-  height: 70px;
-  width: 100%;
-  margin-bottom: 10px;
-  background-color: #ecf0f1;
-  border-bottom: thin dashed #bdc3c7;
-  color: #7f8c8d;
-}
-
-header > h1 {
-  line-height: 100px;
-}
-
-.jumbotron {
-  border-bottom: thin dashed #bdc3c7;
-}
-
-.glyphicon-huge {
-  font-size: 20em;
-  color:white;
-}
-
-/* Stick Footer */
 body, html {
+  margin: 0 auto;
   height: 100%;
+  background: -webkit-linear-gradient(#0c2333, #04111a);
+  background: -o-linear-gradient(#0c2333, #04111a);
+  background: -moz-linear-gradient(#0c2333, #04111a);
+  background: linear-gradient(#0c2333, #04111a);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #e8e8e8;
+  font-family: 'Maven Pro', sans-serif;
 }
 
 .wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -130px;
+  margin: 0 auto 6em;
 }
 
-.push {
-  height: 130px;
-}
-
-footer {
-  height: 100px;
-  border-top: thick outset #27ae60;
-  background-color: #333;
-  color: #ecf0f1;
-  margin-top: 50px;
-}
-
-footer > div {
-  text-align: center;
-}
-
-.resource {
-  border-radius: 4px 4px;
-  background-color: #eee;
-  margin-bottom: 10px;
-  padding: 0 10px 15px 10px;
-}
-
-/* Dashboard */
 .container a {
   text-decoration: none;
 }
 
+.container a:hover {
+  text-shadow: 0px 0px 6px rgba(142,221,252,0.5);
+  color: #37c7ff;
+}
+
+.navbar {
+  background-color: #0c2333;
+  font-size: 17px;
+  border-bottom: 1px solid #03314d;
+}
+
+.navbar-default .navbar-nav > li > a {
+  opacity: 0.7;
+  font-size: 0.8em;
+  border-bottom: 3px solid #0c2333;
+  color: #ecf0f1;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  opacity: 1;
+  color: #ecf0f1;
+  border-bottom: 3px solid #b0f173;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  opacity: 1;
+  font-weight: normal;
+  background-color: #0c2333;
+  color: #ecf0f1;
+}
+
+.navbar-default .navbar-brand {
+  color: #e8e8e8;
+  font-size: 1.5em;
+}
+
+.navbar-brand:hover, .navbar-brand:focus {
+  color: #e8e8e8 !important;
+}
+
+header {
+  height: 70px;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: transparent;
+  color: #7f8c8d;
+}
+
+header h1 {
+  font-size: 25px;
+  line-height: 50px;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 3em;
+  background-color: #000;
+  opacity:0.2;
+  font-size: 1em;
+  font-weight: 400;
+  padding: 1em;
+  text-align: center;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: thin;
+}
+
+.btn, input {
+  background-color: transparent !important;
+}
+
+input {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+input:active, input:focus {
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Home Page */
+
+.home {
+  background: url(../images/waterbase_BG.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+
+.homeSlogan {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.homeLogo {
+  font-size: 6em;
+  font-weight: lighter;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.w {
+  display: inline-block;
+  margin-right: -0.05em;
+  vertical-align: middle;
+  height: 1em;
+}
+
+/* Dashboard and Database Manager*/
+
+.tableHeader {
+  margin-bottom: 10px;
+  padding: 0 10px 15px 10px;
+  border: 3px solid transparent;
+  background: -webkit-linear-gradient(#0c2333, #071c2a);
+  background: -o-linear-gradient(#0c2333, #071c2a);
+  background: -moz-linear-gradient(#0c2333, #071c2a);
+  background: linear-gradient(#0c2333, #071c2a);
+}
+
+.tableHeader > th {
+  opacity: 0.4;
+  font-weight: 400;
+  padding: 0px 10px 0px 10px;
+  height: 40px;
+}
+
+.server:hover {
+  border-left: 3px solid #b0f173;
+}
+
+.server {
+  border: 3px solid transparent;
+}
+
+.server td {
+  padding: 20px 10px 20px 10px;
+  vertical-align: text-top;
+}
+
+/* Dashboard */
+
+.waterTable {
+  width: 100%;
+}
+
+.waterTable input {
+  background: rgba(44, 118, 147, 0.5);
+  padding: 2px 10px;
+  border: none;
+}
+
+.waterTable input:focus {
+  outline: none;
+}
+
+
+@-webkit-keyframes runningGlow {
+  from { color: #b0f173; text-shadow: none}
+  50% { color: #b0f173; text-shadow: 0 0 8px rgba(192,248,39,0.)}
+  to { color: #b0f173; text-shadow: none}
+}
+
 .on {
-  color: #31B404;
+  -webkit-animation-name: runningGlow;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
 }
 
 .off {
-  color: #FE2E2E;
+  /*text-shadow: 0px 0px 2px #FE2E2E;*/
+  color: #bf0606;
 }
 
 .name {
-  width: 20%;
+  width: 25%;
 }
 
 .status {
   width: 10%;
 }
 
-.port {
-  width: 10%;
-}
-
 .endpoints {
-  width: 48%;
+  width: 53%;
 }
 
 .actions {
   width: 12%;
 }
 
+.action:focus {
+  outline: 0;
+}
+
 .action {
   vertical-align: text-top;
   display: inline-block;
-  margin: 0;
+  margin-right:10px;
+  border: none;
+  background: transparent;
 }
+
+.action:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 6px rgba(142,221,252,0.5);
+  color: #37c7ff;
+}
+
 
 /*Database Manager*/
 
-.document :hover {
-  background-color: yellow;
-  opacity: 50%;
+.managerHeader {
+  margin-bottom: 10px;
+  padding: 0 10px 15px 10px;
+  border: 3px solid transparent;
+  /*border-top: 1px solid #03314d;*/
+  background: -webkit-linear-gradient(#0c2333, #071c2a);
+  background: -o-linear-gradient(#0c2333, #071c2a);
+  background: -moz-linear-gradient(#0c2333, #071c2a);
+  background: linear-gradient(#0c2333, #071c2a);
+}
+
+.managerHeader > th {
+  opacity: 0.4;
+  font-weight: 400;
+/*  border-left: 7px solid #03314d;*/
+  padding: 0px 10px 0px 12px;
+  height: 40px;
+}
+
+.document td {
+  padding: 20px 10px 20px 15px;
+}
+
+.document:hover {
+  border-left: #b0f173 solid 4px;
+}
+
+.document {
+  border: 4px solid transparent;
+}
+
+.tab{
+  font-size: 1.2em;
+
+  margin: 20px 20px 20px 5px;
+}
+
+.tab:hover {
+  cursor: pointer;
+}
+
+.tab.active {
+  text-shadow: 0px 0px 6px rgba(142,221,252,0.5);
+  color: #37c7ff;
 }
 
 hr {
   border: 0;
   height: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  /*border-top: 1px solid rgba(0, 0, 0, 0.1);*/
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .attribute {
@@ -151,14 +305,48 @@ hr {
   margin-left: 10px;
   vertical-align: middle;
   color: #a4a4a4;
+  font-size: 15px;
+  opacity: 0.2;
 }
 
 .remove:hover {
   color: #6e6e6e;
+  opacity: 1;
+}
+
+
+
+.addDocument:hover {
+  cursor: pointer;
 }
 
 label, input {
+  font-family: 'Maven Pro', sans-serif !important;
+  font-weight: 400 !important;
+  color: #e8e8e8 !important;
   margin-right: 10px;
+  font-weight: 400;
 }
 
 
+select.dim {
+  background-color: gray;
+}
+
+/* Create Server */
+
+.resource {
+  border-left: 3px solid #b0f173;
+  margin: 10px;
+  border: 1px solid #03314d;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+}
+
+.createServer input {
+  color: #e8e8e8;
+  border-bottom: 1;
+  background-color: transparent;
+  outline: none;
+  border-radius: 5px;
+}

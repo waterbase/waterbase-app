@@ -6,7 +6,8 @@ angular.module('waterbaseApp', [
   'ngSanitize',
   'ngRoute',
   'xeditable',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngAnimate'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

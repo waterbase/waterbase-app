@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waterbaseApp')
-  .controller('DashboardCtrl', function($scope, $http, $route, ServerService) {
+  .controller('DashboardCtrl', function($scope, $http, $route, $q, ServerService) {
 
     $scope.getServers = function() {
       ServerService.getServers().success(function(servers) {
@@ -14,8 +14,6 @@ angular.module('waterbaseApp')
         });
       });
     };
-
-    $scope.getServers();
 
     // ServerService
     $scope.deleteServer = function(server){
@@ -34,11 +32,11 @@ angular.module('waterbaseApp')
           console.log('Server stopped');
         });
       } else {
-
         ServerService.startServer(server).success(function() {
           $scope.getServers();
-          console.log('Server started');
         });
       }
     };
+
+    $scope.getServers();
   });
