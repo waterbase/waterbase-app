@@ -47,7 +47,7 @@ angular.module('waterbaseApp')
           $location.path('/dashboard');
         });
     };
-    
+
     $scope.back = function(path) {
       $location.path(path);
     };

@@ -1,48 +1,43 @@
-<div ng-include="'partials/navbar.html'"></div>
-
-<div ng-controller="DashboardCtrl">
+<div ng-controller="DashboardCtrl" class="container">
   <header>
     <div class="container">
-      <h2>Dashboard</h2>
+      <h1>Dashboard</h1>
     </div>
   </header>
 
-  <div class="container">
-    <h2>
-      Servers
-      <a class="btn btn-success pull-right" ng-href="/dashboard/create">Create New Server</a>
-    </h2>
-  <div class="row">
+  <div class="col-sm-12">
+    <h4>Servers</h4>
+  </div>
     <div class="col-sm-12">
-      <table class="table">
-        <tr class="resource">
+      <table class="waterTable">
+        <tr class="tableHeader">
           <th class="name">Name</th>
           <th class="status">Status</th>
-          <!--<th>ID</th>-->
-          <th class="port">URL</th>
+          <th>URL</th>
           <th class="endpoints">API Endpoints</th>
           <th class="actions">Actions</th>
         </tr>
 
         <!-- list servers -->
-        <tr ng-repeat="server in servers">
+        <tr ng-repeat="server in servers" class="server" ng-init="actions=false" ng-mouseenter="actions=true" ng-mouseleave="actions=false">
           <td>{{server.name}}</td>
           <td>
             <span ng-show="server.status.running" class="on">Running</span>
             <span ng-hide="server.status.running" class="off">Stopped</span>
           </td>
-          <!--<td>{{server._id}}</td>-->
           <td>{{server.heroku.web_url}}</td>
           <td><p ng-repeat="resource in server.resources">{{resource.description}}</p></td>
-          <td>
-            <h4>
-              <a class="btn-sm btn-info glyphicon glyphicon-off action" ng-click="toggleServer(server)" href=""></a>
-              <a class="btn-sm btn-primary glyphicon glyphicon-pencil action" ng-href="/manager/{{server.name}}/{{server._id}}"></a>
-              <a class="btn-sm btn-danger glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
-            </h4>
+          <td ng-show="actions">
+            <a class="glyphicon glyphicon-off action" ng-click="toggleServer(server)" href=""></a>
+            <a class="glyphicon glyphicon-pencil action" ng-href="/manager/{{server._id}}"></a>
+            <a class="glyphicon glyphicon-trash action" ng-click="deleteServer(server)" href=""></a>
+          </td>
+          <td ng-hide="actions">
+            &nbsp;
           </td>
         </tr>
       </table>
+        <a style="margin-top:30px" class="pull-left"  ng-href="/dashboard/create"><span class="glyphicon glyphicon-tasks" style="margin-right: 10px; vertical-align: text-bottom"></span>Create New Server</a>
     </div>
   </div>
 </div>

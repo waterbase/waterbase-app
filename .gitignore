@@ -8,3 +8,4 @@ heroku
 dist
 seeds.js
 *.md
+*.log
