@@ -1,4 +1,4 @@
-waterbase
+Waterbase.io
 
 ### Simplifying RESTful APIs
 
